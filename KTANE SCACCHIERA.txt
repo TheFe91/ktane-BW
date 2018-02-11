@@ -1,0 +1,57 @@
+ETICHETTE
+Ho le etichette che fanno capo sempre a 2 celle.
+Etichetta non presente --> bianco
+Etichetta presente --> Se accesa, primo nero e secondo bianco, se spenta primo bianco e secondo nero
+Etichette divise in gruppi da 2, posizionate in punti fissi sulla griglia
+
+I Riga:
+SND - IND
+
+II Riga:
+MSA - TRN
+
+III Riga:
+CLR - CAR
+
+IV Riga:
+BOB - NSA
+
+V Riga:
+FRQ - SIG
+
+VI Riga:
+FRK - CLR
+
+VII Riga:
+BOB - SND
+
+VIII Riga:
+IND - SIG
+
+BATTERIE
+Al massimo 2, quindi se sono + di due le conto come 2
+Per ogni batteria conto da destra X caselle (dove X è la somma dei valori delle batterie, AA=1, D=2), la X-esima è nera
+
+TIMER
+Max 1 casella per ogni riga va premuta quando l'ultima cifra del timer è pari
+
+S/N
+1 casella fa capo all'ultima cifra del S/N: pari=nero, dispari/lettera=bianco
+1 casella fa capo alla somma di tutte le cifre: dispari=nero, pari=bianco
+
+PORTE+MODULI (ciascuno x 1 casella, se non presente-->bianco)
+Se c'è una Porta Stereo RCA
+	Numero di moduli sulla bomba: pari=nero, dispari=bianco
+Se c'è una porta DVI-D
+	Numero di moduli sulla bomba: pari=bianco, dispari=nero
+Se c'è una porta Parallel
+	Numero di moduli risolti sulla bomba: pari=nero, dispari=bianco
+Se c'è una porta RJ-45
+	Numero di moduli risolti sulla bomba: pari=bianco, dispari=nero
+
+
+
+
+
+
+
