@@ -40,14 +40,18 @@ S/N
 1 casella fa capo alla somma di tutte le cifre: dispari=nero, pari=bianco
 
 PORTE+MODULI (ciascuno x 1 casella, se non presente-->bianco)
-Se c'è una Porta Stereo RCA
-	Numero di moduli sulla bomba: pari=nero, dispari=bianco
-Se c'è una porta DVI-D
-	Numero di moduli sulla bomba: pari=bianco, dispari=nero
-Se c'è una porta Parallel
-	Numero di moduli risolti sulla bomba: pari=nero, dispari=bianco
-Se c'è una porta RJ-45
-	Numero di moduli risolti sulla bomba: pari=bianco, dispari=nero
+Righe I-II
+	Se c'è una Porta Stereo RCA
+		Numero di moduli sulla bomba: pari=nero, dispari=bianco
+Righe III-IV
+	Se c'è una porta DVI-D
+		Numero di moduli sulla bomba: pari=bianco, dispari=nero
+Righe V-VI
+	Se c'è una porta Parallel
+		Numero di moduli risolti sulla bomba: pari=nero, dispari=bianco
+Righe VII-VIII
+	Se c'è una porta RJ-45
+		Numero di moduli risolti sulla bomba: pari=bianco, dispari=nero
 
 
 
