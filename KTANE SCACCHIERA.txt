@@ -29,8 +29,18 @@ VIII Riga:
 IND - SIG
 
 BATTERIE
-Al massimo 2, quindi se sono + di due le conto come 2
-Per ogni batteria conto da destra X caselle (dove X è la somma dei valori delle batterie, AA=1, D=2), la X-esima è nera
+Se la colonna dove c'è il simbolo della batteria sulla mappa è pari (B-D-F-H):
+	Se ci sono solo batterie AA --> sopra=nero, sotto=bianco
+	Se ci sono solo batterie D  --> sopra=bianco, sotto=nero
+	Se ci sono entrambe le batterie si guarda il verso della batteria nella mappa:
+		Se è rivolta verso l'alto, sopra=bianco, sotto=nero
+		Se è rivolta verso il basso, sopra=nero, sotto=bianco
+Se la colonna dove c'è il simbolo della batteria sulla mappa è dispari (A-C-E-G):
+	Se ci sono solo batterie AA --> sopra=bianco, sotto=nero
+	Se ci sono solo batterie D  --> sopra=nero, sotto=bianco
+	Se ci sono entrambe le batterie si guarda il verso della batteria nella mappa:
+		Se è rivolta verso l'alto, sopra=nero, sotto=bianco
+		Se è rivolta verso il basso, sopra=bianco, sotto=nero
 
 TIMER
 Max 1 casella per ogni riga va premuta quando l'ultima cifra del timer è pari
