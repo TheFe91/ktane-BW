@@ -43,11 +43,11 @@ Se la colonna dove c'è il simbolo della batteria sulla mappa è dispari (A-C-E-
 		Se è rivolta verso il basso, sopra=bianco, sotto=nero
 
 TIMER
-Max 1 casella per ogni riga va premuta quando l'ultima cifra del timer è pari
+Max 1 casella per ogni riga; va premuta quando nel timer è presente in qualsiasi posizione il numero della sua riga
 
 S/N
-1 casella fa capo all'ultima cifra del S/N: pari=nero, dispari/lettera=bianco
-1 casella fa capo alla somma di tutte le cifre: dispari=nero, pari=bianco
+SNL: La casella fa capo all'ultima cifra del S/N: pari=nero, dispari/lettera=bianco
+SNS: La casella fa capo alla somma di tutte le cifre: dispari=nero, pari=bianco
 
 PORTE+MODULI (ciascuno x 1 casella, se non presente-->bianco)
 Righe I-II
