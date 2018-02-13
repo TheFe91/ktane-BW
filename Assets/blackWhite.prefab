@@ -3179,6 +3179,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9045f3b7debde284ba175784db06d5d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Audio: {fileID: 114833666996286540}
+  Module: {fileID: 114642792579546594}
+  Info: {fileID: 114066686909386368}
+  buttons:
+  - {fileID: 114629544539429972}
+  - {fileID: 114196973602927060}
+  - {fileID: 114326543128361506}
+  - {fileID: 114967883906593374}
+  - {fileID: 114833386724425756}
+  - {fileID: 114807019316523146}
+  - {fileID: 114131751364985674}
+  - {fileID: 114970809216658812}
+  - {fileID: 114259428231564616}
+  - {fileID: 114338762392697598}
+  - {fileID: 114920759367212660}
+  - {fileID: 114465966592750936}
+  - {fileID: 114863418256391182}
+  - {fileID: 114864161315924222}
+  - {fileID: 114465966592750936}
+  - {fileID: 114792517158302170}
+  white: {fileID: 2100000, guid: 4cbb79ed113cb4441a9882099cc11f66, type: 2}
+  black: {fileID: 2100000, guid: bbcbb0c8114786e4884984230fa4acc1, type: 2}
 --- !u!114 &114742744400007910
 MonoBehaviour:
   m_ObjectHideFlags: 1

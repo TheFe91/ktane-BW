@@ -297,6 +297,7 @@
     <Compile Include="Assets\Examples\1.5 WebService\ExampleWebService.cs" />
     <Compile Include="Assets\Examples\1.8 Button Masher Module\ButtonMasherModule.cs" />
     <Compile Include="Assets\Examples\1.9 Widget\ExampleWidget.cs" />
+    <Compile Include="Assets\KMBombInfoExtensions.cs" />
     <Compile Include="Assets\TestHarness\TestHarness.cs" />
     <Compile Include="Assets\TestHarness\TestHighlightable.cs" />
     <Compile Include="Assets\TestHarness\TestSelectable.cs" />
