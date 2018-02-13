@@ -9,7 +9,7 @@ public class blackWhite : MonoBehaviour {
     public KMAudio Audio;
     public KMBombModule Module;
     public KMBombInfo Info;
-    public KMSelectable[] buttons;
+    public KMSelectable[] selButtons;
     public Material white, black;
 
     private bool _isSolved = false, _lightsOn = false;
@@ -29,7 +29,7 @@ public class blackWhite : MonoBehaviour {
         for (int i = 0; i < 16; i++)
         {
             int j = i;
-            buttons[i].OnInteract += delegate ()
+            selButtons[i].OnInteract += delegate ()
             {
                 handlePress(j);
                 return false;
@@ -47,20 +47,26 @@ public class blackWhite : MonoBehaviour {
     {
         blacks = new List<int>();
         answers = new List<int>();
+        foreach (KMSelectable button in selButtons)
+            button.GetComponent<Renderer>().material = white;
         generateStage(1);
     }
 
     void handlePress (int pressed)
     {
-        Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, buttons[pressed].transform);
+        Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, selButtons[pressed].transform);
 
         if (!_lightsOn || _isSolved) return;
 
-        Debug.LogFormat("[Black&White #{0}] <Stage 1> Pressed button is {1}", _moduleId, pressed);
-
-        buttons[pressed].GetComponent<Renderer>().material = black;
+        selButtons[pressed].GetComponent<Renderer>().material = black;
 
         ansChk(pressed);
+    }
+
+    bool isEven (int num)
+    {
+        if (num % 2 == 0) return true;
+        else return false;
     }
 
     void generateStage(int stage)
@@ -72,7 +78,9 @@ public class blackWhite : MonoBehaviour {
             case 0:
                 #region TIMER
                 blacks.Add(3);
+                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 3", _moduleId);
                 blacks.Add(4);
+                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 4", _moduleId);
                 #endregion
                 #region INDICATORS
                 if (KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.SND) || KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.IND))
@@ -80,10 +88,12 @@ public class blackWhite : MonoBehaviour {
                     if (KMBombInfoExtensions.IsIndicatorOn(Info,KMBombInfoExtensions.KnownIndicatorLabel.SND) || KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.IND))
                     {
                         blacks.Add(0);
+                        Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 0", _moduleId);
                     }
                     else
                     {
                         blacks.Add(1);
+                        Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 1", _moduleId);
                     }
                 }
                 if (KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.MSA) || KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.TRN))
@@ -91,10 +101,12 @@ public class blackWhite : MonoBehaviour {
                     if (KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.MSA) || KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.TRN))
                     {
                         blacks.Add(5);
+                        Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 5", _moduleId);
                     }
                     else
                     {
                         blacks.Add(6);
+                        Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 6", _moduleId);
                     }
                 }
                 if (KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.CLR) || KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.CAR))
@@ -102,10 +114,12 @@ public class blackWhite : MonoBehaviour {
                     if (KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.CLR) || KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.CAR))
                     {
                         blacks.Add(10);
+                        Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 10", _moduleId);
                     }
                     else
                     {
                         blacks.Add(11);
+                        Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 11", _moduleId);
                     }
                 }
                 if (KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.BOB) || KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.NSA))
@@ -113,10 +127,12 @@ public class blackWhite : MonoBehaviour {
                     if (KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.BOB) || KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.NSA))
                     {
                         blacks.Add(12);
+                        Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 12", _moduleId);
                     }
                     else
                     {
                         blacks.Add(13);
+                        Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 13", _moduleId);
                     }
                 }
                 #endregion
@@ -127,15 +143,20 @@ public class blackWhite : MonoBehaviour {
                 if (last % 2 == 0)
                 {
                     blacks.Add(7);
+                    Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 7", _moduleId);
                     blacks.Add(9);
+                    Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 9", _moduleId);
                 }
                 #endregion
                 #region SNS(SerialNumberSum)
                 int sum = 0;
                 foreach (int num in Info.GetSerialNumberNumbers())
                     sum += num;
-                if (sum % 2 == 0)
+                if (!isEven(sum))
+                {
                     blacks.Add(8);
+                    Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 8", _moduleId);
+                }
                 #endregion
                 #region PM(Ports+Modules)
                 if (Info.IsPortPresent(KMBombInfoExtensions.KnownPortType.StereoRCA))
@@ -144,6 +165,7 @@ public class blackWhite : MonoBehaviour {
                         blacks.Add(2);
                         blacks.Add(14);
                         blacks.Add(15);
+                        Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 2, 14 and 15", _moduleId);
                     }
                 #endregion
                 break;
