@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html class="no-js"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Keep Talking and Nobody Explodes Example Manual Page</title>
+    <meta name="viewport" content="initial-scale=1"> 
+	<link href='https://fonts.googleapis.com/css?family=Special+Elite' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+<div class="section">
+    <div class="page page-bg-01">
+        		<div class="page-header">
+			<span class="page-header-doc-title">Keep Talking and Nobody Explodes Mod</span>
+			<span class="page-header-section-title">Black &amp; White</span>
+		</div>
+        <div class="page-content">
+    	    <img src="img/Component.svg" class="diagram">
+            <h2>On the Subject of Black &amp; White</h2>
+            <p class="flavour-text">
+					Sometimes it is only a matter of Black and White.<br>
+					Usually you can change your mind about a wrong choice...usually...not always...
+			</p>
+
+			<p>
+				You are given a grid of white squares.<br>
+				You must find which squares must become black.<br>
+				Simply click them to change their color.<br>
+				Solution is automatically submitted when correct.
+			</p>
+			<!-- Here are some examples of tables that we use in the manual that you can use if it makes sense -->
+			<!-- Wires table -->
+			<table>
+				<tbody>
+					<tr>
+						<td><strong><em>Indicators</em></strong><br>
+							Indicators always refer to a group of 2 horizontal squares.<br>
+							If the indicator is lit, the first square is black, the second is white.<br>
+							If it is not lit, the first square is white, the second is black.<br>
+							If the indicator is not present, both the squares must be white.
+						</td>
+					</tr>
+					<tr>
+						<td><strong><em>Batteries</em></strong><br>
+							Batteries on the map always refer to a group of 2 vertical squares.<br><br>
+							<table class="repeaters-table">
+								<tbody>
+									<tr>
+										<th class="repeaters-spacer"></th>
+										<th colspan="2">Column is odd<br>(A-C-E-G)</th>
+										<th colspan="2">Column is even<br>(B-D-F-H)</th>
+									</tr>
+									<tr>
+										<th align="center">There are only AA Batteries</th>
+										<td align="center" colspan="2">Upper is White<br>Lower is Black</td>
+										<td align="center" colspan="2">Upper is Black<br>Lower is White</td>
+									</tr>
+									<tr>
+										<th align="center">There are only D Batteries</th>
+										<td align="center" colspan="2">Upper is Black<br>Lower is White</td>
+										<td align="center" colspan="2">Upper is White<br>Lower is Black</td>
+									</tr>
+									<tr>
+										<th rowspan="2">There are AA and D Batteries</th>
+										<td align="center">Battery on the map is facing upwards</td>
+										<td align="center">Upper is Black<br>Lower is White</td>
+										<td align="center">Battery on the map is facing upwards</td>
+										<td align="center">Upper is White<br>Lower is Black</td>
+									</tr>
+									<tr>
+										<td align="center">Battery on the map is facing downwards</td>
+										<td align="center">Upper is White<br>Lower is Black</td>
+										<td align="center">Battery on the map is facing downwards</td>
+										<td align="center">Upper is Black<br>Lower is White</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td><strong><em>Timer</em></strong><br>
+							This square is always black, but it must be pressed when on the timer there is a digit corresponding to the square's line number in any position.<br>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<br>
+			<br>
+			<!-- Simon table -->
+			<table class="repeaters-table">
+				<tbody>
+					<tr>
+						<th class="repeaters-spacer" colspan="2"></th>
+						<th>Red Flash</th>
+						<th>Blue Flash</th>
+						<th>Green Flash</th>
+						<th>Yellow Flash</th>
+					</tr>
+					<tr>
+						<th rowspan="3">Button&nbsp;to&nbsp;press:</th>
+						<th>No&nbsp;Strikes</th>
+						<td>Blue</td>
+						<td>Yellow</td>
+						<td>Green</td>
+						<td>Red</td>
+					</tr>
+					<tr>
+						<th>1&nbsp;Strike</th>
+						<td>Red</td>
+						<td>Blue</td>
+						<td>Yellow</td>
+						<td>Green</td>
+					</tr>
+					<tr>
+						<th>2&nbsp;Strikes</th>
+						<td>Yellow</td>
+						<td>Green</td>
+						<td>Blue</td>
+						<td>Red</td>
+					</tr>
+				</tbody>
+			</table>
+        </div>
+    </div>
+</div>
+</body></html>
