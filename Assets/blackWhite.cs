@@ -32,7 +32,6 @@ public class blackWhite : MonoBehaviour {
             selButtons[i].OnInteractEnded += delegate ()
             {
                 handlePress(j);
-                Debug.LogFormat("[Black&White #{0}] Pressed {1}", _moduleId, j);
             };
         }
     }
@@ -182,10 +181,16 @@ public class blackWhite : MonoBehaviour {
         {
             if (pressedButton == 3)
                 if (!Info.GetFormattedTime().Contains("1"))
+                {
                     onError();
-            else if (pressedButton == 4)
-                if (!Info.GetFormattedTime().Contains("2"))
-                    onError();
+                    return;
+                }
+                else if (pressedButton == 4)
+                    if (!Info.GetFormattedTime().Contains("2"))
+                    {
+                        onError();
+                        return;
+                    }
 
             Debug.LogFormat("[Black&White #{0}] <Stage 1> Answer {1} is correct", _moduleId, pressedButton);
             selButtons[pressedButton].GetComponent<Renderer>().material.color = Color.black;
@@ -193,6 +198,8 @@ public class blackWhite : MonoBehaviour {
             if (ScrambledEquals(blacks, answers))
             {
                 Debug.LogFormat("[Black&White #{0}] <Stage 1> Cleared!", _moduleId);
+                Audio.PlaySoundAtTransform("lvl_done", Module.transform);
+                selButtons[pressedButton].AddInteractionPunch();
                 Module.HandlePass();
                 _isSolved = true;
             }
