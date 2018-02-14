@@ -29,10 +29,10 @@ public class blackWhite : MonoBehaviour {
         for (int i = 0; i < 16; i++)
         {
             int j = i;
-            selButtons[i].OnInteract += delegate ()
+            selButtons[i].OnInteractEnded += delegate ()
             {
                 handlePress(j);
-                return false;
+                Debug.LogFormat("[Black&White #{0}] Pressed {1}", _moduleId, j);
             };
         }
     }
@@ -57,8 +57,6 @@ public class blackWhite : MonoBehaviour {
         Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, selButtons[pressed].transform);
 
         if (!_lightsOn || _isSolved) return;
-
-        selButtons[pressed].GetComponent<Renderer>().material = black;
 
         ansChk(pressed);
     }
@@ -182,7 +180,15 @@ public class blackWhite : MonoBehaviour {
 
         if (blacks.Contains(pressedButton))
         {
-            Debug.LogFormat("[Black&White #{0}] <Stage 1> Answer is correct", _moduleId);
+            if (pressedButton == 3)
+                if (!Info.GetFormattedTime().Contains("1"))
+                    onError();
+            else if (pressedButton == 4)
+                if (!Info.GetFormattedTime().Contains("2"))
+                    onError();
+
+            Debug.LogFormat("[Black&White #{0}] <Stage 1> Answer {1} is correct", _moduleId, pressedButton);
+            selButtons[pressedButton].GetComponent<Renderer>().material.color = Color.black;
             answers.Add(pressedButton);
             if (ScrambledEquals(blacks, answers))
             {
@@ -193,11 +199,16 @@ public class blackWhite : MonoBehaviour {
         }
         else
         {
-            Debug.LogFormat("[Black&White #{0}] Answer incorrect! Strike and reset!", _moduleId);
-            answers.Clear();
-            Module.HandleStrike();
-            Init();
+            onError();
         }
+    }
+
+    void onError ()
+    {
+        Debug.LogFormat("[Black&White #{0}] Answer incorrect! Strike and reset!", _moduleId);
+        answers.Clear();
+        Module.HandleStrike();
+        Init();
     }
 
     private static bool ScrambledEquals<T>(IEnumerable<T> list1, IEnumerable<T> list2)
