@@ -11,7 +11,7 @@
 <body>
 <div class="section">
     <div class="page page-bg-01">
-        		<div class="page-header">
+		<div class="page-header">
 			<span class="page-header-doc-title">Keep Talking and Nobody Explodes Mod</span>
 			<span class="page-header-section-title">Black &amp; White</span>
 		</div>
@@ -39,6 +39,66 @@
 							If the indicator is not present, both the squares must be white.
 						</td>
 					</tr>
+					<tr>
+						<td><strong><em>T - Timer</em></strong><br>
+							This square is always black, but it must be pressed when on the timer there is a digit corresponding to the square's line number in any position.<br>
+						</td>
+					</tr>
+					<tr>
+						<td><strong><em>SNL - Serial Number Last</em></strong><br>
+							If the last digit of the serial number is even, this square must be black otherwise it must be white.
+						</td>
+					</tr>
+					<tr>
+						<td><strong><em>SNS - Serial Number Sum</em></strong><br>
+							Sum every digit in the serial number.<br>
+							If the result is odd, this square must be black, otherwise it must be white.
+						</td>
+					</tr>
+					<tr>
+						<td><strong><em>PM - Ports and Modules</em></strong><br><br>
+							<table class="repeaters-table">
+								<tr>
+									<th class="repeaters-spacer" colspan="2"></th>
+									<th>Port to find</th>
+									<th>Square Color</th>
+								</tr>
+								<tr>
+									<th rowspan="4">Row</th>
+									<th>1-2</th>
+									<td align="center">Stereo RCA</td>
+									<td align="center">Total modules are even: black<br>Total modules are odd: white</td>
+								</tr>
+								<tr>
+									<th>3-4</th>
+									<td align="center">DVI-D</td>
+									<td align="center">Total modules are even: white<br>Total modules are odd: black</td>
+								</tr>
+								<tr>
+									<th>5</th>
+									<td align="center">Parallel</td>
+									<td align="center">Solved modules are even: black<br>Solved modules are odd: white</td>
+								</tr>
+								<tr>
+									<th>6</th>
+									<td align="center">RJ-45</td>
+									<td align="center">Solved modules are even: white<br>Solved modules are odd: black</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="page page-bg-05">
+		<div class="page-header">
+			<span class="page-header-doc-title">Keep Talking and Nobody Explodes Mod</span>
+			<span class="page-header-section-title">Black &amp; White</span>
+		</div>
+		<div class="page-content">
+			<table>
+				<tbody>
 					<tr>
 						<td><strong><em>BATT - Batteries</em></strong><br>
 							Batteries on the map always refer to a group of 2 vertical squares.<br><br>
@@ -76,86 +136,10 @@
 							</table>
 						</td>
 					</tr>
-					<tr>
-						<td><strong><em>T - Timer</em></strong><br>
-							This square is always black, but it must be pressed when on the timer there is a digit corresponding to the square's line number in any position.<br>
-						</td>
-					</tr>
-					<tr>
-						<td><strong><em>SNL - Serial Number Last</em></strong><br>
-							If the last digit of the serial number is even, this square must be black otherwise it must be white.
-						</td>
-					</tr>
-					<tr>
-						<td><strong><em>SNS - Serial Number Sum</em></strong><br>
-							Sum every digit in the serial number.<br>
-							If the result is odd, this square must be black, otherwise it must be white.
-						</td>
-					</tr>
-					<tr>
-						<td><strong><em>PM - Ports and Modules</em></strong><br>
-							<table class="repeaters-table">
-								<tr>
-									<th class="repeaters-spacer" colspan="2"></th>
-									<th>Port to find</th>
-									<th>Square Color</th>
-								</tr>
-								<tr>
-									<th rowspan="4">Row you are<br>looking on the map</th>
-									<th>1-2</th>
-									<td align="center">Stereo RCA</td>
-									<td align="center">Modules are even: black<br>Modules are odd: white</td>
-								</tr>
-								<tr>
-									<th>3-4</th>
-								</tr>
-								<tr>
-									<th>5</th>
-								</tr>
-								<tr>
-									<th>6</th>
-								</tr>
-							</table>
-						</td>
-					</tr>
 				</tbody>
 			</table>
 			<br>
 			<br>
-			<!-- Simon table -->
-			<table class="repeaters-table">
-				<tbody>
-					<tr>
-						<th class="repeaters-spacer" colspan="2"></th>
-						<th>Red Flash</th>
-						<th>Blue Flash</th>
-						<th>Green Flash</th>
-						<th>Yellow Flash</th>
-					</tr>
-					<tr>
-						<th rowspan="3">Button&nbsp;to&nbsp;press:</th>
-						<th>No&nbsp;Strikes</th>
-						<td>Blue</td>
-						<td>Yellow</td>
-						<td>Green</td>
-						<td>Red</td>
-					</tr>
-					<tr>
-						<th>1&nbsp;Strike</th>
-						<td>Red</td>
-						<td>Blue</td>
-						<td>Yellow</td>
-						<td>Green</td>
-					</tr>
-					<tr>
-						<th>2&nbsp;Strikes</th>
-						<td>Yellow</td>
-						<td>Green</td>
-						<td>Blue</td>
-						<td>Red</td>
-					</tr>
-				</tbody>
-			</table>
         </div>
     </div>
 </div>
