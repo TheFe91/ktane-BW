@@ -35,7 +35,7 @@
 						<td><strong><em>TXT - Indicators</em></strong><br>
 							Indicators always refer to a group of 2 horizontal squares.<br>
 							If the indicator is lit, the first square is black, the second is white.<br>
-							If it is not lit, the first square is white, the second is black.<br>
+							If the indicator is unlit, the first square is white, the second is black.<br>
 							If the indicator is not present, both the squares must be white.
 							<table align="center">
 								<tbody>
@@ -133,7 +133,7 @@
 					</tr>
 					<tr>
 						<td><strong><em>BATT - Batteries</em></strong><br>
-							Batteries on the map always refer to a group of 2 vertical squares.<br><br>
+							Batteries on the map always refer to a group of 2 vertical squares.<br>
 							<table class="repeaters-table">
 								<tbody>
 									<tr>
@@ -143,29 +143,30 @@
 									</tr>
 									<tr>
 										<th align="center">There are only AA Batteries</th>
-										<td align="center" colspan="2">Upper is White<br>Lower is Black</td>
-										<td align="center" colspan="2">Upper is Black<br>Lower is White</td>
+										<td align="center" colspan="2"><img src ="maps/support/uW_dB.png"></td>
+										<td align="center" colspan="2"><img src ="maps/support/uB_dW.png"></td>
 									</tr>
 									<tr>
 										<th align="center">There are only D Batteries</th>
-										<td align="center" colspan="2">Upper is Black<br>Lower is White</td>
-										<td align="center" colspan="2">Upper is White<br>Lower is Black</td>
+										<td align="center" colspan="2"><img src ="maps/support/uB_dW.png"></td>
+										<td align="center" colspan="2"><img src ="maps/support/uW_dB.png"></td>
 									</tr>
 									<tr>
 										<th rowspan="2">There are AA and D Batteries</th>
 										<td align="center">Battery on the map is facing upwards</td>
-										<td align="center">Upper is Black<br>Lower is White</td>
+										<td align="center"><img src ="maps/support/uB_dW.png"></td>
 										<td align="center">Battery on the map is facing upwards</td>
-										<td align="center">Upper is White<br>Lower is Black</td>
+										<td align="center"><img src ="maps/support/uW_dB.png"></td>
 									</tr>
 									<tr>
 										<td align="center">Battery on the map is facing downwards</td>
-										<td align="center">Upper is White<br>Lower is Black</td>
+										<td align="center"><img src ="maps/support/uW_dB.png"></td>
 										<td align="center">Battery on the map is facing downwards</td>
-										<td align="center">Upper is Black<br>Lower is White</td>
+										<td align="center"><img src ="maps/support/uB_dW.png"></td>
 									</tr>
 								</tbody>
 							</table>
+							If there aren't batteries, both the squares must be white
 						</td>
 					</tr>
 				</tbody>
