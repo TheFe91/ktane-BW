@@ -365,7 +365,7 @@ public class blackWhite : MonoBehaviour {
                         int last = 0;
                         foreach (int number in Info.GetSerialNumberNumbers())
                             last = number;
-                        if (last % 2 == 0)
+                        if (isEven(last))
                         {
                             blacks.Add(9);
                             Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 9", _moduleId);
@@ -397,11 +397,90 @@ public class blackWhite : MonoBehaviour {
                     case 1:
                         #region TIMER
                         blacks.Add(3);
-                        Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 3", _moduleId);
+                        Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 3 (D1)", _moduleId);
                         blacks.Add(8);
-                        Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 8", _moduleId);
+                        Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 8 (C2)", _moduleId);
                         blacks.Add(19);
-                        Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 19", _moduleId);
+                        Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 19 (B4)", _moduleId);
+                        #endregion
+                        #region INDICATORS
+                        if (KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.CLR) || KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.CAR))
+                        {
+                            if (KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.CLR) || KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.CAR))
+                            {
+                                blacks.Add(14);
+                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 14 (C3)", _moduleId);
+                            }
+                            else
+                            {
+                                blacks.Add(15);
+                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 15 (D3)", _moduleId);
+                            }
+                        }
+                        #endregion
+                        #region SNL(SerialNumberLast)
+                        last = 0;
+                        foreach (int number in Info.GetSerialNumberNumbers())
+                            last = number;
+                        if (isEven(last))
+                        {
+                            blacks.Add(1);
+                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 1 (B1)", _moduleId);
+                        }
+                        #endregion
+                        #region SNS(SerialNumberSum)
+                        sum = 0;
+                        foreach (int num in Info.GetSerialNumberNumbers())
+                            sum += num;
+                        if (!isEven(sum))
+                        {
+                            blacks.Add(20);
+                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 20 (C4)", _moduleId);
+                        }
+                        #endregion
+                        #region PM(Ports+Modules)
+                        if (Info.IsPortPresent(KMBombInfoExtensions.KnownPortType.StereoRCA))
+                            if (isEven(Info.GetSolvableModuleNames().Count + Info.GetSolvedModuleNames().Count))
+                            {
+                                blacks.Add(2);
+                                blacks.Add(9);
+                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 2 (C1) and 9 (D2)", _moduleId);
+                            }
+						if (Info.IsPortPresent(KMBombInfoExtensions.KnownPortType.DVI))
+                            if (!isEven(Info.GetSolvableModuleNames().Count + Info.GetSolvedModuleNames().Count))
+                            {
+                                blacks.Add(21);
+                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 21 (D4)", _moduleId);
+                            }
+                        #endregion
+                        #region BATTERIES
+                        if (Info.GetBatteryCount(KMBombInfoExtensions.KnownBatteryType.AA) > 0 && Info.GetBatteryCount(KMBombInfoExtensions.KnownBatteryType.D) == 0)
+                        {
+                            blacks.Add(6);
+                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 6 (A2)", _moduleId);
+                            blacks.Add(7);
+                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 7 (B2)", _moduleId);
+                            blacks.Add(18);
+                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 18 (A4)", _moduleId);
+                        }
+                        else if (Info.GetBatteryCount(KMBombInfoExtensions.KnownBatteryType.AA) == 0 && Info.GetBatteryCount(KMBombInfoExtensions.KnownBatteryType.D) > 0)
+                        {
+                            blacks.Add(0);
+                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 0 (A1)", _moduleId);
+                            blacks.Add(12);
+                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 12 (A3)", _moduleId);
+                            blacks.Add(13);
+                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 13 (B3)", _moduleId);
+                        }
+                        else if (Info.GetBatteryCount(KMBombInfoExtensions.KnownBatteryType.AA) > 0 && Info.GetBatteryCount(KMBombInfoExtensions.KnownBatteryType.D) > 0)
+                        {
+                            blacks.Add(0);
+                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 0 (A1)", _moduleId);
+                            blacks.Add(7);
+                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 7 (B2)", _moduleId);
+                            blacks.Add(18);
+                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 18 (A4)", _moduleId);
+                        }
                         #endregion
                         break;
                     case 2:

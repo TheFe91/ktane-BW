@@ -1,8 +1,8 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/TestHarness/TestHarness.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/blackWhite.cs">
     <Files>
-      <File FileName="Assets/TestHarness/TestHarness.cs" Line="179" Column="1" />
+      <File FileName="Assets/blackWhite.cs" Line="449" Column="7" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -56,10 +56,10 @@ Righe I-II
 Righe III-IV
 	Se c'è una porta DVI-D
 		Numero di moduli sulla bomba: pari=bianco, dispari=nero
-Righe V-VI
+Righe V
 	Se c'è una porta Parallel
 		Numero di moduli risolti sulla bomba: pari=nero, dispari=bianco
-Righe VII-VIII
+Righe VI
 	Se c'è una porta RJ-45
 		Numero di moduli risolti sulla bomba: pari=bianco, dispari=nero
 
