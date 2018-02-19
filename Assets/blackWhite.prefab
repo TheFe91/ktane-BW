@@ -7576,7 +7576,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ModuleType: blackWhite
-  ModuleDisplayName: Black or White
+  ModuleDisplayName: Black and White
   RequiresTimerVisibility: 1
 --- !u!114 &114646748835321286
 MonoBehaviour:
