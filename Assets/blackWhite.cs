@@ -8,6 +8,7 @@ public class blackWhite : MonoBehaviour {
     public KMAudio Audio;
     public KMBombModule Module;
     public KMBombInfo Info;
+    public GameObject s1GO, s2GO, s3GO, s4GO;
     public KMSelectable[] selButtons;
     public Material white;
     public Animator s2, s3, s4;
@@ -22,12 +23,16 @@ public class blackWhite : MonoBehaviour {
     // Use this for initialization
     void Start () {
         _moduleId = _moduleIdCounter++;
+        s1GO.SetActive(false);
+        s2GO.SetActive(false);
+        s3GO.SetActive(false);
+        s4GO.SetActive(false);
         Module.OnActivate += Activate;
 	}
 
     private void Awake()
     {
-        for (int i = 0; i < 16; i++)
+        for (int i = 0; i < 36; i++)
         {
             int j = i;
             selButtons[i].OnInteractEnded += delegate ()
@@ -39,6 +44,7 @@ public class blackWhite : MonoBehaviour {
 
     void Activate ()
     {
+        s1GO.SetActive(true);
         Init();
         _lightsOn = true;
     }
@@ -101,12 +107,12 @@ public class blackWhite : MonoBehaviour {
                             if (KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.CLR) || KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.CAR))
                             {
                                 blacks.Add(13);
-                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 13 (B2)", _moduleId);
+                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 13 (B3)", _moduleId);
                             }
                             else
                             {
                                 blacks.Add(14);
-                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 14 (B3)", _moduleId);
+                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 14 (C3)", _moduleId);
                             }
                         }
                         #endregion
@@ -298,8 +304,8 @@ public class blackWhite : MonoBehaviour {
                         #region TIMER
                         blacks.Add(3);
                         Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 3", _moduleId);
-                        blacks.Add(6);
-                        Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 4", _moduleId);
+                        blacks.Add(8);
+                        Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 8", _moduleId);
                         #endregion
                         #region INDICATORS
                         if (KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.SND) || KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.IND))
@@ -389,8 +395,26 @@ public class blackWhite : MonoBehaviour {
                         #endregion
                         break;
                     case 1:
+                        #region TIMER
+                        blacks.Add(3);
+                        Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 3", _moduleId);
+                        blacks.Add(8);
+                        Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 8", _moduleId);
+                        blacks.Add(19);
+                        Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 19", _moduleId);
+                        #endregion
                         break;
                     case 2:
+                        #region TIMER
+                        blacks.Add(3);
+                        Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 3", _moduleId);
+                        blacks.Add(8);
+                        Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 8", _moduleId);
+                        blacks.Add(12);
+                        Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 12", _moduleId);
+                        blacks.Add(18);
+                        Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 18", _moduleId);
+                        #endregion
                         break;
                 }
                 break;
@@ -507,16 +531,19 @@ public class blackWhite : MonoBehaviour {
                 switch (stage)
                 {
                     case 1:
+                        s2GO.SetActive(true);
                         s2.Play("stage2");
                         stage++;
                         Init();
                         break;
                     case 2:
+                        s3GO.SetActive(true);
                         s3.Play("stage3");
                         stage++;
                         Init();
                         break;
                     case 3:
+                        s4GO.SetActive(true);
                         s4.Play("stage4");
                         stage++;
                         Init();
@@ -582,7 +609,12 @@ public class blackWhite : MonoBehaviour {
     void onError ()
     {
         Debug.LogFormat("[Black&White #{0}] Answer incorrect! Strike and reset!", _moduleId);
-        s2.Play("stage2Err");
+        switch (stage)
+        {
+            case 2: s2.Play("stage2Err"); break;
+            case 3: s2.Play("stage2Err"); s3.Play("stage3Eerr"); break;
+            case 4: s2.Play("stage2Err"); s3.Play("stage3Eerr"); s4.Play("stage4Err");  break;
+        }
         Module.HandleStrike();
         Init();
     }
