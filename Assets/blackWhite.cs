@@ -2,6 +2,7 @@
 using System.Linq;
 using UnityEngine;
 using KMHelper;
+using System.Collections;
 
 public class blackWhite : MonoBehaviour {
 
@@ -726,8 +727,28 @@ public class blackWhite : MonoBehaviour {
         return cnt.Values.All(c => c == 0);
     }
 
+    IEnumerator anims()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            switch (i)
+            {
+                case 0: s2.Play("stage2"); break;
+                case 1: s3.Play("stage3"); break;
+                case 2: s4.Play("stage4"); break;
+            }
+            yield return new WaitForSeconds(1.5f);
+        }
+    }
+
     // Update is called once per frame
     void Update () {
-		
+		if(Input.GetKeyDown("d"))
+        {
+            s2GO.SetActive(true);
+            s3GO.SetActive(true);
+            s4GO.SetActive(true);
+            StartCoroutine("anims");
+        }
 	}
 }
