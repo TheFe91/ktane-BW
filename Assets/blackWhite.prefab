@@ -7795,9 +7795,10 @@ MonoBehaviour:
   - {fileID: 114844278359011748}
   - {fileID: 114792517158302170}
   white: {fileID: 2100000, guid: 4cbb79ed113cb4441a9882099cc11f66, type: 2}
-  s2: {fileID: 95289880745060128}
-  s3: {fileID: 95239276715606716}
-  s4: {fileID: 95215849287727166}
+  stages:
+  - {fileID: 95289880745060128}
+  - {fileID: 95239276715606716}
+  - {fileID: 95215849287727166}
 --- !u!114 &114707903045691114
 MonoBehaviour:
   m_ObjectHideFlags: 1

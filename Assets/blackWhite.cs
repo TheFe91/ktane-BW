@@ -12,7 +12,7 @@ public class blackWhite : MonoBehaviour {
     public GameObject s1GO, s2GO, s3GO, s4GO;
     public KMSelectable[] selButtons;
     public Material white;
-    public Animator s2, s3, s4;
+    public Animator[] stages;
 
     private bool _isSolved = false, _lightsOn = false;
     private static int _moduleIdCounter = 1;
@@ -612,19 +612,19 @@ public class blackWhite : MonoBehaviour {
                 {
                     case 1:
                         s2GO.SetActive(true);
-                        s2.Play("stage2");
+                        stages[0].Play("stage2");
                         stage++;
                         Init();
                         break;
                     case 2:
                         s3GO.SetActive(true);
-                        s3.Play("stage3");
+                        stages[1].Play("stage3");
                         stage++;
                         Init();
                         break;
                     case 3:
                         s4GO.SetActive(true);
-                        s4.Play("stage4");
+                        stages[2].Play("stage4");
                         stage++;
                         Init();
                         break;
@@ -691,9 +691,9 @@ public class blackWhite : MonoBehaviour {
         Debug.LogFormat("[Black&White #{0}] Answer incorrect! Strike and reset!", _moduleId);
         switch (stage)
         {
-            case 2: s2.Play("stage2Err"); break;
-            case 3: s2.Play("stage2Err"); s3.Play("stage3Eerr"); break;
-            case 4: s2.Play("stage2Err"); s3.Play("stage3Eerr"); s4.Play("stage4Err");  break;
+            case 2: stages[0].Play("stage2Err"); break;
+            case 3: stages[0].Play("stage2Err"); stages[1].Play("stage3Eerr"); break;
+            case 4: stages[0].Play("stage2Err"); stages[1].Play("stage3Eerr"); stages[2].Play("stage4Err");  break;
         }
         Module.HandleStrike();
         Init();
@@ -731,12 +731,7 @@ public class blackWhite : MonoBehaviour {
     {
         for (int i = 0; i < 3; i++)
         {
-            switch (i)
-            {
-                case 0: s2.Play("stage2"); break;
-                case 1: s3.Play("stage3"); break;
-                case 2: s4.Play("stage4"); break;
-            }
+            stages[i].Play("stage" + (i + 2).ToString());
             yield return new WaitForSeconds(1.5f);
         }
     }
