@@ -18,6 +18,9 @@ public class blackWhite : MonoBehaviour {
     private static int _moduleIdCounter = 1;
     private int _moduleId = 0;
     private int stage = 1;
+    private string[] stage2Names = {"Column_D", "D1", "D2", "D3", "D4", "C4", "B4", "A4", "Row_4" };
+    private string[] stage3Names = { "Column_E", "E1", "E2", "E3", "E4", "E5", "D5", "C5", "B5", "A5", "Row_5" };
+    private string[] stage4Names = { "Column_F", "F1", "F2", "F3", "F4", "F5", "F6", "E6", "D6", "C6", "B6", "A6", "Row_6" };
 
     private List<int> blacks, answers;
 
@@ -727,12 +730,33 @@ public class blackWhite : MonoBehaviour {
         return cnt.Values.All(c => c == 0);
     }
 
-    IEnumerator anims()
+    IEnumerator anim2()
     {
-        for (int i = 0; i < 3; i++)
+        foreach(string state in stage2Names)
         {
-            stages[i].Play("stage" + (i + 2).ToString());
-            yield return new WaitForSeconds(1.5f);
+            stages[0].Play(state);
+            Audio.PlaySoundAtTransform("pop", transform);
+            yield return new WaitForSeconds(0.15f);
+        }
+    }
+
+    IEnumerator anim3()
+    {
+        foreach (string state in stage3Names)
+        {
+            stages[1].Play(state);
+            Audio.PlaySoundAtTransform("pop", transform);
+            yield return new WaitForSeconds(0.15f);
+        }
+    }
+
+    IEnumerator anim4()
+    {
+        foreach (string state in stage4Names)
+        {
+            stages[2].Play(state);
+            Audio.PlaySoundAtTransform("pop", transform);
+            yield return new WaitForSeconds(0.15f);
         }
     }
 
@@ -741,9 +765,17 @@ public class blackWhite : MonoBehaviour {
 		if(Input.GetKeyDown("d"))
         {
             s2GO.SetActive(true);
-            s3GO.SetActive(true);
-            s4GO.SetActive(true);
-            StartCoroutine("anims");
+            StartCoroutine("anim2");
         }
-	}
+        if (Input.GetKeyDown("e"))
+        {
+            s3GO.SetActive(true);
+            StartCoroutine("anim3");
+        }
+        if (Input.GetKeyDown("f"))
+        {
+            s4GO.SetActive(true);
+            StartCoroutine("anim4");
+        }
+    }
 }
