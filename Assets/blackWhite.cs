@@ -18,7 +18,7 @@ public class blackWhite : MonoBehaviour {
     private static int _moduleIdCounter = 1;
     private int _moduleId = 0;
     private int stage = 1;
-    private string[] stage2Names = {"Column_D", "D1", "D2", "D3", "D4", "C4", "B4", "A4", "Row_4" };
+    private string[] stage2Names = { "Column_D", "D1", "D2", "D3", "D4", "C4", "B4", "A4", "Row_4" };
     private string[] stage3Names = { "Column_E", "E1", "E2", "E3", "E4", "E5", "D5", "C5", "B5", "A5", "Row_5" };
     private string[] stage4Names = { "Column_F", "F1", "F2", "F3", "F4", "F5", "F6", "E6", "D6", "C6", "B6", "A6", "Row_6" };
 
@@ -498,6 +498,93 @@ public class blackWhite : MonoBehaviour {
                         blacks.Add(18);
                         Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 18", _moduleId);
                         #endregion
+                        #region INDICATORS
+                        if (KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.MSA) || KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.TRN))
+                        {
+                            if (KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.MSA) || KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.TRN))
+                            {
+                                blacks.Add(6);
+                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 6 (A2)", _moduleId);
+                            }
+                            else
+                            {
+                                blacks.Add(7);
+                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 7 (B2)", _moduleId);
+                            }
+                        }
+                        if (KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.CLR) || KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.CAR))
+                        {
+                            if (KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.CLR) || KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.CAR))
+                            {
+                                blacks.Add(13);
+                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 13 (B3)", _moduleId);
+                            }
+                            else
+                            {
+                                blacks.Add(14);
+                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 14 (C3)", _moduleId);
+                            }
+                        }
+                        if (KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.BOB) || KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.NSA))
+                        {
+                            if (KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.BOB) || KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.NSA))
+                            {
+                                blacks.Add(20);
+                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 20 (C4)", _moduleId);
+                            }
+                            else
+                            {
+                                blacks.Add(21);
+                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 21 (D4)", _moduleId);
+                            }
+                        }
+                        #endregion
+                        #region SNL (SerialNumberLast)
+                        last = 0;
+                        foreach (int number in Info.GetSerialNumberNumbers())
+                            last = number;
+                        if (isEven(last))
+                        {
+                            blacks.Add(2);
+                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 2 (C1)", _moduleId);
+                        }
+                        #endregion
+                        #region SNS (SerialNumberSum)
+                        sum = 0;
+                        foreach (int num in Info.GetSerialNumberNumbers())
+                            sum += num;
+                        if (!isEven(sum))
+                        {
+                            blacks.Add(0);
+                            blacks.Add(19);
+                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 0 (A1) and 19 (B4)", _moduleId);
+                        }
+                        #endregion
+                        #region PM (Ports+Modules)
+                        if (Info.IsPortPresent(KMBombInfoExtensions.KnownPortType.StereoRCA))
+                            if (isEven(Info.GetSolvableModuleNames().Count + Info.GetSolvedModuleNames().Count))
+                            {
+                                blacks.Add(1);
+                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 1 (B1)", _moduleId);
+                            }
+                        #endregion
+                        #region BATTERIES
+                        if (Info.GetBatteryCount(KMBombInfoExtensions.KnownBatteryType.AA) > 0 && Info.GetBatteryCount(KMBombInfoExtensions.KnownBatteryType.D) == 0)
+                        {
+                            blacks.Add(9);
+                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 9 (D2)", _moduleId);
+                        }
+                        else if (Info.GetBatteryCount(KMBombInfoExtensions.KnownBatteryType.AA) == 0 && Info.GetBatteryCount(KMBombInfoExtensions.KnownBatteryType.D) > 0)
+                        {
+                            blacks.Add(15);
+                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 15 (D3)", _moduleId);
+                        }
+                        else if (Info.GetBatteryCount(KMBombInfoExtensions.KnownBatteryType.AA) > 0 && Info.GetBatteryCount(KMBombInfoExtensions.KnownBatteryType.D) > 0)
+                        {
+                            blacks.Add(15);
+                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 15 (D3)", _moduleId);
+                        }
+                        #endregion
                         break;
                 }
                 break;
@@ -558,23 +645,63 @@ public class blackWhite : MonoBehaviour {
                     {
                         case 0:
                             if (pressedButton == 3)
-                            {
                                 if (!Info.GetFormattedTime().Contains("1"))
                                 {
                                     onError();
                                     return;
                                 }
-                                else if (pressedButton == 6)
-                                    if (!Info.GetFormattedTime().Contains("2"))
-                                    {
-                                        onError();
-                                        return;
-                                    }
-                            }
+                            else if (pressedButton == 6)
+                                if (!Info.GetFormattedTime().Contains("2"))
+                                {
+                                    onError();
+                                    return;
+                                }
                             break;
                         case 1:
+                            if (pressedButton == 3)
+                                if (!Info.GetFormattedTime().Contains("1"))
+                                {
+                                    onError();
+                                    return;
+                                }
+                            else if (pressedButton == 8)
+                                if (!Info.GetFormattedTime().Contains("2"))
+                                {
+                                    onError();
+                                    return;
+                                }
+                            else if (pressedButton == 19)
+                                if (!Info.GetFormattedTime().Contains("4"))
+                                {
+                                    onError();
+                                    return;
+                                }
                             break;
                         case 2:
+                            if (pressedButton == 3)
+                                if (!Info.GetFormattedTime().Contains("1"))
+                                {
+                                    onError();
+                                    return;
+                                }
+                            else if (pressedButton == 8)
+                                if (!Info.GetFormattedTime().Contains("2"))
+                                {
+                                    onError();
+                                    return;
+                                }
+                            else if (pressedButton == 12)
+                                if (!Info.GetFormattedTime().Contains("3"))
+                                {
+                                    onError();
+                                    return;
+                                }
+                            else if (pressedButton == 18)
+                                if (!Info.GetFormattedTime().Contains("4"))
+                                {
+                                    onError();
+                                    return;
+                                }
                             break;
                     }
                     break;
