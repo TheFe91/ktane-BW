@@ -18,7 +18,7 @@ public class blackWhite : MonoBehaviour {
     private static int _moduleIdCounter = 1;
     private int _moduleId = 0;
     private int stage = 1;
-    private string[] stage2Names = {"Column_D", "D1", "D2", "D3", "D4", "C4", "B4", "A4", "Row_4" };
+    private string[] stage2Names = { "Column_D", "D1", "D2", "D3", "D4", "C4", "B4", "A4", "Row_4" };
     private string[] stage3Names = { "Column_E", "E1", "E2", "E3", "E4", "E5", "D5", "C5", "B5", "A5", "Row_5" };
     private string[] stage4Names = { "Column_F", "F1", "F2", "F3", "F4", "F5", "F6", "E6", "D6", "C6", "B6", "A6", "Row_6" };
 
@@ -738,6 +738,8 @@ public class blackWhite : MonoBehaviour {
             Audio.PlaySoundAtTransform("pop", transform);
             yield return new WaitForSeconds(0.15f);
         }
+		if (stages[0].GetFloat("Direction") == -1.0f)
+			stages[0].SetFloat("Direction", 1.0f);
     }
 
     IEnumerator anim3()
@@ -762,20 +764,28 @@ public class blackWhite : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		if(Input.GetKeyDown("d"))
+		if(Input.GetKeyDown(KeyCode.D))
         {
             s2GO.SetActive(true);
             StartCoroutine("anim2");
         }
-        if (Input.GetKeyDown("e"))
+		if (Input.GetKeyDown(KeyCode.E))
         {
             s3GO.SetActive(true);
             StartCoroutine("anim3");
         }
-        if (Input.GetKeyDown("f"))
+		if (Input.GetKeyDown(KeyCode.F))
         {
             s4GO.SetActive(true);
             StartCoroutine("anim4");
         }
+		if (Input.GetKey(KeyCode.Space))
+		{
+			if (Input.GetKeyDown (KeyCode.G))
+			{
+				stages[0].SetFloat("Direction", -1.0f);
+				StartCoroutine("anim2");
+			}
+		}
     }
 }
