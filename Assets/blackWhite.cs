@@ -11,7 +11,9 @@ public class blackWhite : MonoBehaviour {
     public KMBombInfo Info;
     public GameObject s1GO, s2GO, s3GO, s4GO;
     public KMSelectable[] selButtons;
+	public KMSelectable puzzleBackground;
     public Material white, black;
+	public Material[] greyMats;
     public Animator[] stages;
 
     private bool _isSolved = false, _lightsOn = false;
@@ -731,7 +733,6 @@ public class blackWhite : MonoBehaviour {
             }
 
             Debug.LogFormat("[Black&White #{0}] <Stage 1> Answer {1} is correct", _moduleId, pressedButton);
-            //selButtons[pressedButton].GetComponent<Renderer>().material.color = Color.black;
 			selButtons[pressedButton].GetComponent<Renderer>().material = black;
             answers.Add(pressedButton);
             if (ScrambledEquals(blacks, answers))
@@ -742,18 +743,19 @@ public class blackWhite : MonoBehaviour {
                 switch (stage)
                 {
 					case 1:
+						puzzleBackground.GetComponent<Renderer>().material = greyMats[1];
 						s2GO.SetActive (true);
 						StartCoroutine ("anim2");
 	                    stage++;
 	                    Init();
 	                    break;
-				case 2:
+					case 2:
 						s3GO.SetActive (true);
 						StartCoroutine ("anim3");
 	                    stage++;
 	                    Init();
 	                    break;
-				case 3:
+					case 3:
 						s4GO.SetActive (true);
 						StartCoroutine ("anim4");
 	                    stage++;

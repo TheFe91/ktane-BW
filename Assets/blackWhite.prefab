@@ -4522,7 +4522,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 2dc87f7ff0b93494b83f62b78a969e43, type: 2}
+  - {fileID: 2100000, guid: 3c6efe8188eb1724e83c1d9d809efc3e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7794,8 +7794,14 @@ MonoBehaviour:
   - {fileID: 114464540591650912}
   - {fileID: 114844278359011748}
   - {fileID: 114792517158302170}
+  puzzleBackground: {fileID: 114423925264968562}
   white: {fileID: 2100000, guid: 4cbb79ed113cb4441a9882099cc11f66, type: 2}
   black: {fileID: 2100000, guid: bbcbb0c8114786e4884984230fa4acc1, type: 2}
+  greyMats:
+  - {fileID: 2100000, guid: 3c6efe8188eb1724e83c1d9d809efc3e, type: 2}
+  - {fileID: 2100000, guid: f025b91e9be125d4eb92eb6184e8e587, type: 2}
+  - {fileID: 2100000, guid: 53862a0f3babafa4aaf7ddf66b7b3abf, type: 2}
+  - {fileID: 2100000, guid: 2dc87f7ff0b93494b83f62b78a969e43, type: 2}
   stages:
   - {fileID: 95289880745060128}
   - {fileID: 95239276715606716}
