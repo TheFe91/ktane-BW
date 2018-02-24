@@ -11,7 +11,7 @@ public class blackWhite : MonoBehaviour {
     public KMBombInfo Info;
     public GameObject s1GO, s2GO, s3GO, s4GO;
     public KMSelectable[] selButtons;
-    public Material white;
+    public Material white, black;
     public Animator[] stages;
 
     private bool _isSolved = false, _lightsOn = false;
@@ -307,9 +307,9 @@ public class blackWhite : MonoBehaviour {
                     case 0:
                         #region TIMER
                         blacks.Add(3);
-                        Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 3", _moduleId);
-                        blacks.Add(8);
-                        Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 8", _moduleId);
+						Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 3 (D1)", _moduleId);
+                        blacks.Add(6);
+						Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 6 (A2)", _moduleId);
                         #endregion
                         #region INDICATORS
                         if (KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.SND) || KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.IND))
@@ -317,12 +317,12 @@ public class blackWhite : MonoBehaviour {
                             if (KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.SND) || KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.IND))
                             {
                                 blacks.Add(0);
-                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 0", _moduleId);
+								Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 0 (A1)", _moduleId);
                             }
                             else
                             {
                                 blacks.Add(1);
-                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 1", _moduleId);
+								Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 1 (B1)", _moduleId);
                             }
                         }
                         if (KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.MSA) || KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.TRN))
@@ -330,12 +330,12 @@ public class blackWhite : MonoBehaviour {
                             if (KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.MSA) || KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.TRN))
                             {
                                 blacks.Add(7);
-                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 7", _moduleId);
+								Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 7 (B2)", _moduleId);
                             }
                             else
                             {
                                 blacks.Add(8);
-                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 8", _moduleId);
+								Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 8 (C2)", _moduleId);
                             }
                         }
                         if (KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.CLR) || KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.CAR))
@@ -343,12 +343,12 @@ public class blackWhite : MonoBehaviour {
                             if (KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.CLR) || KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.CAR))
                             {
                                 blacks.Add(14);
-                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 14", _moduleId);
+								Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 14 (C3)", _moduleId);
                             }
                             else
                             {
                                 blacks.Add(15);
-                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 15", _moduleId);
+								Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 15 (D3)", _moduleId);
                             }
                         }
                         if (KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.BOB) || KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.NSA))
@@ -356,12 +356,12 @@ public class blackWhite : MonoBehaviour {
                             if (KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.BOB) || KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.NSA))
                             {
                                 blacks.Add(18);
-                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 18", _moduleId);
+								Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 18 (A4)", _moduleId);
                             }
                             else
                             {
                                 blacks.Add(19);
-                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 19", _moduleId);
+								Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 19 (B4)", _moduleId);
                             }
                         }
                         #endregion
@@ -372,9 +372,9 @@ public class blackWhite : MonoBehaviour {
                         if (isEven(last))
                         {
                             blacks.Add(9);
-                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 9", _moduleId);
+							Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 9 (D2)", _moduleId);
                             blacks.Add(13);
-                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 13", _moduleId);
+							Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 13 (B3)", _moduleId);
                         }
                         #endregion
                         #region SNS(SerialNumberSum)
@@ -384,7 +384,7 @@ public class blackWhite : MonoBehaviour {
                         if (!isEven(sum))
                         {
                             blacks.Add(12);
-                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 12", _moduleId);
+							Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 12 (A3)", _moduleId);
                         }
                         #endregion
                         #region PM(Ports+Modules)
@@ -394,7 +394,7 @@ public class blackWhite : MonoBehaviour {
                                 blacks.Add(2);
                                 blacks.Add(20);
                                 blacks.Add(21);
-                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 2, 20 and 21", _moduleId);
+								Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 2 (C1), 20 (C4) and 21 (D4)", _moduleId);
                             }
                         #endregion
                         break;
@@ -413,12 +413,12 @@ public class blackWhite : MonoBehaviour {
                             if (KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.CLR) || KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.CAR))
                             {
                                 blacks.Add(14);
-                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 14 (C3)", _moduleId);
+                                Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 14 (C3)", _moduleId);
                             }
                             else
                             {
                                 blacks.Add(15);
-                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 15 (D3)", _moduleId);
+                                Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 15 (D3)", _moduleId);
                             }
                         }
                         #endregion
@@ -429,7 +429,7 @@ public class blackWhite : MonoBehaviour {
                         if (isEven(last))
                         {
                             blacks.Add(1);
-                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 1 (B1)", _moduleId);
+                            Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 1 (B1)", _moduleId);
                         }
                         #endregion
                         #region SNS(SerialNumberSum)
@@ -439,7 +439,7 @@ public class blackWhite : MonoBehaviour {
                         if (!isEven(sum))
                         {
                             blacks.Add(20);
-                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 20 (C4)", _moduleId);
+                            Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 20 (C4)", _moduleId);
                         }
                         #endregion
                         #region PM(Ports+Modules)
@@ -448,42 +448,42 @@ public class blackWhite : MonoBehaviour {
                             {
                                 blacks.Add(2);
                                 blacks.Add(9);
-                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 2 (C1) and 9 (D2)", _moduleId);
+                                Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 2 (C1) and 9 (D2)", _moduleId);
                             }
 						if (Info.IsPortPresent(KMBombInfoExtensions.KnownPortType.DVI))
                             if (!isEven(Info.GetSolvableModuleNames().Count + Info.GetSolvedModuleNames().Count))
                             {
                                 blacks.Add(21);
-                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 21 (D4)", _moduleId);
+                                Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 21 (D4)", _moduleId);
                             }
                         #endregion
                         #region BATTERIES
                         if (Info.GetBatteryCount(KMBombInfoExtensions.KnownBatteryType.AA) > 0 && Info.GetBatteryCount(KMBombInfoExtensions.KnownBatteryType.D) == 0)
                         {
                             blacks.Add(6);
-                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 6 (A2)", _moduleId);
+                            Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 6 (A2)", _moduleId);
                             blacks.Add(7);
-                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 7 (B2)", _moduleId);
+                            Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 7 (B2)", _moduleId);
                             blacks.Add(18);
-                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 18 (A4)", _moduleId);
+                            Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 18 (A4)", _moduleId);
                         }
                         else if (Info.GetBatteryCount(KMBombInfoExtensions.KnownBatteryType.AA) == 0 && Info.GetBatteryCount(KMBombInfoExtensions.KnownBatteryType.D) > 0)
                         {
                             blacks.Add(0);
-                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 0 (A1)", _moduleId);
+                            Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 0 (A1)", _moduleId);
                             blacks.Add(12);
-                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 12 (A3)", _moduleId);
+                            Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 12 (A3)", _moduleId);
                             blacks.Add(13);
-                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 13 (B3)", _moduleId);
+                            Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 13 (B3)", _moduleId);
                         }
                         else if (Info.GetBatteryCount(KMBombInfoExtensions.KnownBatteryType.AA) > 0 && Info.GetBatteryCount(KMBombInfoExtensions.KnownBatteryType.D) > 0)
                         {
                             blacks.Add(0);
-                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 0 (A1)", _moduleId);
+                            Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 0 (A1)", _moduleId);
                             blacks.Add(7);
-                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 7 (B2)", _moduleId);
+                            Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 7 (B2)", _moduleId);
                             blacks.Add(18);
-                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 18 (A4)", _moduleId);
+                            Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 18 (A4)", _moduleId);
                         }
                         #endregion
                         break;
@@ -504,12 +504,12 @@ public class blackWhite : MonoBehaviour {
                             if (KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.MSA) || KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.TRN))
                             {
                                 blacks.Add(6);
-                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 6 (A2)", _moduleId);
+                                Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 6 (A2)", _moduleId);
                             }
                             else
                             {
                                 blacks.Add(7);
-                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 7 (B2)", _moduleId);
+                                Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 7 (B2)", _moduleId);
                             }
                         }
                         if (KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.CLR) || KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.CAR))
@@ -517,12 +517,12 @@ public class blackWhite : MonoBehaviour {
                             if (KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.CLR) || KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.CAR))
                             {
                                 blacks.Add(13);
-                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 13 (B3)", _moduleId);
+                                Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 13 (B3)", _moduleId);
                             }
                             else
                             {
                                 blacks.Add(14);
-                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 14 (C3)", _moduleId);
+                                Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 14 (C3)", _moduleId);
                             }
                         }
                         if (KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.BOB) || KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.NSA))
@@ -530,12 +530,12 @@ public class blackWhite : MonoBehaviour {
                             if (KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.BOB) || KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.NSA))
                             {
                                 blacks.Add(20);
-                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 20 (C4)", _moduleId);
+                                Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 20 (C4)", _moduleId);
                             }
                             else
                             {
                                 blacks.Add(21);
-                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 21 (D4)", _moduleId);
+                                Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 21 (D4)", _moduleId);
                             }
                         }
                         #endregion
@@ -546,7 +546,7 @@ public class blackWhite : MonoBehaviour {
                         if (isEven(last))
                         {
                             blacks.Add(2);
-                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 2 (C1)", _moduleId);
+                            Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 2 (C1)", _moduleId);
                         }
                         #endregion
                         #region SNS (SerialNumberSum)
@@ -557,7 +557,7 @@ public class blackWhite : MonoBehaviour {
                         {
                             blacks.Add(0);
                             blacks.Add(19);
-                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 0 (A1) and 19 (B4)", _moduleId);
+                            Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 0 (A1) and 19 (B4)", _moduleId);
                         }
                         #endregion
                         #region PM (Ports+Modules)
@@ -565,31 +565,31 @@ public class blackWhite : MonoBehaviour {
                             if (isEven(Info.GetSolvableModuleNames().Count + Info.GetSolvedModuleNames().Count))
                             {
                                 blacks.Add(1);
-                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 1 (B1)", _moduleId);
+                                Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 1 (B1)", _moduleId);
                             }
                         #endregion
                         #region BATTERIES
                         if (Info.GetBatteryCount(KMBombInfoExtensions.KnownBatteryType.AA) > 0 && Info.GetBatteryCount(KMBombInfoExtensions.KnownBatteryType.D) == 0)
                         {
                             blacks.Add(9);
-                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 9 (D2)", _moduleId);
+                            Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 9 (D2)", _moduleId);
                         }
                         else if (Info.GetBatteryCount(KMBombInfoExtensions.KnownBatteryType.AA) == 0 && Info.GetBatteryCount(KMBombInfoExtensions.KnownBatteryType.D) > 0)
                         {
                             blacks.Add(15);
-                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 15 (D3)", _moduleId);
+                            Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 15 (D3)", _moduleId);
                         }
                         else if (Info.GetBatteryCount(KMBombInfoExtensions.KnownBatteryType.AA) > 0 && Info.GetBatteryCount(KMBombInfoExtensions.KnownBatteryType.D) > 0)
                         {
                             blacks.Add(15);
-                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 15 (D3)", _moduleId);
+                            Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 15 (D3)", _moduleId);
                         }
                         #endregion
                         break;
                 }
                 break;
             case 3:
-                Debug.LogFormat("[Black&White #{0}] <Stage 3> START", _moduleId);
+				Debug.LogFormat("[Black&White #{0}] <Stage {1}> START", _moduleId, stage);
                 switch (Info.GetStrikes())
                 {
                     case 0:
@@ -601,7 +601,7 @@ public class blackWhite : MonoBehaviour {
                 }
                 break;
             case 4:
-                Debug.LogFormat("[Black&White #{0}] <Stage 4> START", _moduleId);
+				Debug.LogFormat("[Black&White #{0}] <Stage {1}> START", _moduleId, stage);
                 switch (Info.GetStrikes())
                 {
                     case 0:
@@ -731,7 +731,8 @@ public class blackWhite : MonoBehaviour {
             }
 
             Debug.LogFormat("[Black&White #{0}] <Stage 1> Answer {1} is correct", _moduleId, pressedButton);
-            selButtons[pressedButton].GetComponent<Renderer>().material.color = Color.black;
+            //selButtons[pressedButton].GetComponent<Renderer>().material.color = Color.black;
+			selButtons[pressedButton].GetComponent<Renderer>().material = black;
             answers.Add(pressedButton);
             if (ScrambledEquals(blacks, answers))
             {
@@ -740,29 +741,29 @@ public class blackWhite : MonoBehaviour {
                 selButtons[pressedButton].AddInteractionPunch();
                 switch (stage)
                 {
-                    case 1:
-                        s2GO.SetActive(true);
-                        stages[0].Play("stage2");
-                        stage++;
-                        Init();
-                        break;
-                    case 2:
-                        s3GO.SetActive(true);
-                        stages[1].Play("stage3");
-                        stage++;
-                        Init();
-                        break;
-                    case 3:
-                        s4GO.SetActive(true);
-                        stages[2].Play("stage4");
-                        stage++;
-                        Init();
-                        break;
-                    case 4:
-                        Debug.LogFormat("[Black&White #{0}] Module Defused!", _moduleId);
-                        Module.HandlePass();
-                        _isSolved = true;
-                        break;
+					case 1:
+						s2GO.SetActive (true);
+						StartCoroutine ("anim2");
+	                    stage++;
+	                    Init();
+	                    break;
+				case 2:
+						s3GO.SetActive (true);
+						StartCoroutine ("anim3");
+	                    stage++;
+	                    Init();
+	                    break;
+				case 3:
+						s4GO.SetActive (true);
+						StartCoroutine ("anim4");
+	                    stage++;
+	                    Init();
+	                    break;
+	                case 4:
+	                    Debug.LogFormat("[Black&White #{0}] Module Defused!", _moduleId);
+	                    Module.HandlePass();
+	                    _isSolved = true;
+	                    break;
                 }
             }
         }

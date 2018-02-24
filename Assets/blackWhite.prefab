@@ -7795,6 +7795,7 @@ MonoBehaviour:
   - {fileID: 114844278359011748}
   - {fileID: 114792517158302170}
   white: {fileID: 2100000, guid: 4cbb79ed113cb4441a9882099cc11f66, type: 2}
+  black: {fileID: 2100000, guid: bbcbb0c8114786e4884984230fa4acc1, type: 2}
   stages:
   - {fileID: 95289880745060128}
   - {fileID: 95239276715606716}
