@@ -82,12 +82,10 @@ public class blackWhite : MonoBehaviour {
 
     void generateStage(int stage)
     {
-        Debug.LogFormat("[Black&White #{0}] <GenerateStage>", _moduleId);
-
+        Debug.LogFormat("[Black&White #{0}] <Stage {1}> START", _moduleId, stage);
         switch (stage)
         {
             case 1:
-                Debug.LogFormat("[Black&White #{0}] <Stage 1> START", _moduleId);
                 switch (Info.GetStrikes())
                 {
                     case 0:
@@ -304,7 +302,6 @@ public class blackWhite : MonoBehaviour {
                 }
                 break;
             case 2:
-                Debug.LogFormat("[Black&White #{0}] <Stage 2> START", _moduleId);
                 switch (Info.GetStrikes())
                 {
                     case 0:
@@ -386,8 +383,8 @@ public class blackWhite : MonoBehaviour {
                             sum += num;
                         if (!isEven(sum))
                         {
-                            blacks.Add(12);
-							Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 12 (A3)", _moduleId);
+                            blacks.Add(21);
+							Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 21 (D4)", _moduleId);
                         }
                         #endregion
                         #region PM(Ports+Modules)
@@ -395,9 +392,9 @@ public class blackWhite : MonoBehaviour {
                             if ((Info.GetSolvableModuleNames().Count + Info.GetSolvedModuleNames().Count) % 2 == 0)
                             {
                                 blacks.Add(2);
+                                blacks.Add(12);
                                 blacks.Add(20);
-                                blacks.Add(21);
-								Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 2 (C1), 20 (C4) and 21 (D4)", _moduleId);
+								Debug.LogFormat("[Black&White #{0}] <Stage 2> Added 2 (C1), 12 (A3) and 20 (C4)", _moduleId);
                             }
                         #endregion
                         break;
@@ -592,10 +589,10 @@ public class blackWhite : MonoBehaviour {
                 }
                 break;
             case 3:
-				Debug.LogFormat("[Black&White #{0}] <Stage {1}> START", _moduleId, stage);
                 switch (Info.GetStrikes())
                 {
                     case 0:
+
                         break;
                     case 1:
                         break;
@@ -604,7 +601,6 @@ public class blackWhite : MonoBehaviour {
                 }
                 break;
             case 4:
-				Debug.LogFormat("[Black&White #{0}] <Stage {1}> START", _moduleId, stage);
                 switch (Info.GetStrikes())
                 {
                     case 0:
@@ -949,7 +945,7 @@ public class blackWhite : MonoBehaviour {
                     break;
             }
 
-            Debug.LogFormat("[Black&White #{0}] <Stage 1> Answer {1} is correct", _moduleId, pressedButton);
+            Debug.LogFormat("[Black&White #{0}] <Stage {1}> Answer {2} is correct", _moduleId, stage, pressedButton);
 			selButtons[pressedButton].GetComponent<Renderer>().material.mainTexture = black;
             answers.Add(pressedButton);
             if (ScrambledEquals(blacks, answers))
