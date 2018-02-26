@@ -11,9 +11,10 @@ public class blackWhite : MonoBehaviour {
     public KMBombInfo Info;
     public GameObject s1GO, s2GO, s3GO, s4GO;
     public KMSelectable[] selButtons;
-	public KMSelectable puzzleBackground;
-    public Material white, black;
-	public Material[] greyMats;
+	public MeshFilter puzzleBackground;
+    public Material white, greyMat;
+    public Texture2D[] bgs;
+    public Texture2D black;
     public Animator[] stages;
 
     private bool _isSolved = false, _lightsOn = false;
@@ -622,7 +623,8 @@ public class blackWhite : MonoBehaviour {
         Debug.LogFormat("[Black&White #{0}] <Stage 1> Pressed button is {1} ({2})", _moduleId, pressedButton, buttonToCell(pressedButton));
 
         if (blacks.Contains(pressedButton))
-        {
+        {   
+            //Timer check
             switch (stage)
             {
                 case 1:
@@ -639,6 +641,14 @@ public class blackWhite : MonoBehaviour {
                             }
                             break;
                         case 1:
+                            if (pressedButton == 12)
+                            {
+                                if (!Info.GetFormattedTime().Contains("3"))
+                                {
+                                    onError();
+                                    return;
+                                }
+                            }
                             break;
                     }
                     break;
@@ -711,10 +721,82 @@ public class blackWhite : MonoBehaviour {
                     switch (Info.GetStrikes())
                     {
                         case 0:
+                            if (pressedButton == 0)
+                            {
+                                if (!Info.GetFormattedTime().Contains("1"))
+                                {
+                                    onError();
+                                    return;
+                                }
+                            }
+                            else if (pressedButton == 8)
+                            {
+                                if (!Info.GetFormattedTime().Contains("2"))
+                                {
+                                    onError();
+                                    return;
+                                }
+                            }
+                            else if (pressedButton == 24)
+                            {
+                                if (!Info.GetFormattedTime().Contains("5"))
+                                {
+                                    onError();
+                                    return;
+                                }
+                            }
                             break;
                         case 1:
+                            if (pressedButton == 9)
+                            {
+                                if (!Info.GetFormattedTime().Contains("2"))
+                                {
+                                    onError();
+                                    return;
+                                }
+                            }
+                            else if (pressedButton == 18)
+                            {
+                                if (!Info.GetFormattedTime().Contains("4"))
+                                {
+                                    onError();
+                                    return;
+                                }
+                            }
                             break;
                         case 2:
+                            if (pressedButton == 8)
+                            {
+                                if (!Info.GetFormattedTime().Contains("2"))
+                                {
+                                    onError();
+                                    return;
+                                }
+                            }
+                            else if (pressedButton == 12)
+                            {
+                                if (!Info.GetFormattedTime().Contains("3"))
+                                {
+                                    onError();
+                                    return;
+                                }
+                            }
+                            else if (pressedButton == 21)
+                            {
+                                if (!Info.GetFormattedTime().Contains("4"))
+                                {
+                                    onError();
+                                    return;
+                                }
+                            }
+                            else if (pressedButton == 28)
+                            {
+                                if (!Info.GetFormattedTime().Contains("5"))
+                                {
+                                    onError();
+                                    return;
+                                }
+                            }
                             break;
                     }
                     break;
@@ -722,18 +804,153 @@ public class blackWhite : MonoBehaviour {
                     switch (Info.GetStrikes())
                     {
                         case 0:
+                            if (pressedButton == 4)
+                            {
+                                if (!Info.GetFormattedTime().Contains("1"))
+                                {
+                                    onError();
+                                    return;
+                                }
+                            }
+                            else if (pressedButton == 17)
+                            {
+                                if (!Info.GetFormattedTime().Contains("3"))
+                                {
+                                    onError();
+                                    return;
+                                }
+                            }
+                            else if (pressedButton == 18)
+                            {
+                                if (!Info.GetFormattedTime().Contains("4"))
+                                {
+                                    onError();
+                                    return;
+                                }
+                            }
+                            else if (pressedButton == 26)
+                            {
+                                if (!Info.GetFormattedTime().Contains("5"))
+                                {
+                                    onError();
+                                    return;
+                                }
+                            }
+                            else if (pressedButton == 35)
+                            {
+                                if (!Info.GetFormattedTime().Contains("6"))
+                                {
+                                    onError();
+                                    return;
+                                }
+                            }
                             break;
                         case 1:
+                            if (pressedButton == 2)
+                            {
+                                if (!Info.GetFormattedTime().Contains("1"))
+                                {
+                                    onError();
+                                    return;
+                                }
+                            }
+                            else if (pressedButton == 10)
+                            {
+                                if (!Info.GetFormattedTime().Contains("2"))
+                                {
+                                    onError();
+                                    return;
+                                }
+                            }
+                            else if (pressedButton == 17)
+                            {
+                                if (!Info.GetFormattedTime().Contains("3"))
+                                {
+                                    onError();
+                                    return;
+                                }
+                            }
+                            else if (pressedButton == 19)
+                            {
+                                if (!Info.GetFormattedTime().Contains("4"))
+                                {
+                                    onError();
+                                    return;
+                                }
+                            }
+                            else if (pressedButton == 27)
+                            {
+                                if (!Info.GetFormattedTime().Contains("5"))
+                                {
+                                    onError();
+                                    return;
+                                }
+                            }
+                            else if (pressedButton == 34)
+                            {
+                                if (!Info.GetFormattedTime().Contains("6"))
+                                {
+                                    onError();
+                                    return;
+                                }
+                            }
                             break;
                         case 2:
+                            if (pressedButton == 5)
+                            {
+                                if (!Info.GetFormattedTime().Contains("1"))
+                                {
+                                    onError();
+                                    return;
+                                }
+                            }
+                            else if (pressedButton == 10)
+                            {
+                                if (!Info.GetFormattedTime().Contains("2"))
+                                {
+                                    onError();
+                                    return;
+                                }
+                            }
+                            else if (pressedButton == 15)
+                            {
+                                if (!Info.GetFormattedTime().Contains("3"))
+                                {
+                                    onError();
+                                    return;
+                                }
+                            }
+                            else if (pressedButton == 22)
+                            {
+                                if (!Info.GetFormattedTime().Contains("4"))
+                                {
+                                    onError();
+                                    return;
+                                }
+                            }
+                            else if (pressedButton == 24)
+                            {
+                                if (!Info.GetFormattedTime().Contains("5"))
+                                {
+                                    onError();
+                                    return;
+                                }
+                            }
+                            else if (pressedButton == 31)
+                            {
+                                if (!Info.GetFormattedTime().Contains("6"))
+                                {
+                                    onError();
+                                    return;
+                                }
+                            }
                             break;
                     }
                     break;
-
             }
 
             Debug.LogFormat("[Black&White #{0}] <Stage 1> Answer {1} is correct", _moduleId, pressedButton);
-			selButtons[pressedButton].GetComponent<Renderer>().material = black;
+			selButtons[pressedButton].GetComponent<Renderer>().material.mainTexture = black;
             answers.Add(pressedButton);
             if (ScrambledEquals(blacks, answers))
             {
@@ -743,20 +960,22 @@ public class blackWhite : MonoBehaviour {
                 switch (stage)
                 {
 					case 1:
-						puzzleBackground.GetComponent<Renderer>().material = greyMats[1];
-						s2GO.SetActive (true);
+                        puzzleBackground.GetComponent<Renderer>().material.mainTexture = bgs[1];
+                        s2GO.SetActive (true);
 						StartCoroutine ("anim2");
 	                    stage++;
 	                    Init();
 	                    break;
 					case 2:
-						s3GO.SetActive (true);
+                        puzzleBackground.GetComponent<Renderer>().material.mainTexture = bgs[2];
+                        s3GO.SetActive (true);
 						StartCoroutine ("anim3");
 	                    stage++;
 	                    Init();
 	                    break;
 					case 3:
-						s4GO.SetActive (true);
+                        puzzleBackground.GetComponent<Renderer>().material.mainTexture = bgs[3];
+                        s4GO.SetActive (true);
 						StartCoroutine ("anim4");
 	                    stage++;
 	                    Init();
@@ -822,11 +1041,12 @@ public class blackWhite : MonoBehaviour {
     void onError ()
     {
         Debug.LogFormat("[Black&White #{0}] Answer incorrect! Strike and reset!", _moduleId);
+        puzzleBackground.GetComponent<Renderer>().material.mainTexture = bgs[0];
         switch (stage)
         {
             case 2: stages[0].Play("stage2Err"); break;
-            case 3: stages[0].Play("stage2Err"); stages[1].Play("stage3Eerr"); break;
-            case 4: stages[0].Play("stage2Err"); stages[1].Play("stage3Eerr"); stages[2].Play("stage4Err");  break;
+            case 3: stages[0].Play("stage2Err"); stages[1].Play("stage3Err"); break;
+            case 4: stages[0].Play("stage2Err"); stages[1].Play("stage3Err"); stages[2].Play("stage4Err");  break;
         }
         Module.HandleStrike();
         Init();
@@ -895,16 +1115,19 @@ public class blackWhite : MonoBehaviour {
 		if(Input.GetKeyDown("d"))
         {
             s2GO.SetActive(true);
+            puzzleBackground.GetComponent<Renderer>().material.mainTexture = bgs[1];
             StartCoroutine("anim2");
         }
         if (Input.GetKeyDown("e"))
         {
             s3GO.SetActive(true);
+            puzzleBackground.GetComponent<Renderer>().material.mainTexture = bgs[2];
             StartCoroutine("anim3");
         }
         if (Input.GetKeyDown("f"))
         {
             s4GO.SetActive(true);
+            puzzleBackground.GetComponent<Renderer>().material.mainTexture = bgs[3];
             StartCoroutine("anim4");
         }
     }

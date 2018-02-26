@@ -7794,14 +7794,15 @@ MonoBehaviour:
   - {fileID: 114464540591650912}
   - {fileID: 114844278359011748}
   - {fileID: 114792517158302170}
-  puzzleBackground: {fileID: 114423925264968562}
+  puzzleBackground: {fileID: 33561388497604060}
   white: {fileID: 2100000, guid: 4cbb79ed113cb4441a9882099cc11f66, type: 2}
-  black: {fileID: 2100000, guid: bbcbb0c8114786e4884984230fa4acc1, type: 2}
-  greyMats:
-  - {fileID: 2100000, guid: 3c6efe8188eb1724e83c1d9d809efc3e, type: 2}
-  - {fileID: 2100000, guid: f025b91e9be125d4eb92eb6184e8e587, type: 2}
-  - {fileID: 2100000, guid: 53862a0f3babafa4aaf7ddf66b7b3abf, type: 2}
-  - {fileID: 2100000, guid: 2dc87f7ff0b93494b83f62b78a969e43, type: 2}
+  greyMat: {fileID: 2100000, guid: 3c6efe8188eb1724e83c1d9d809efc3e, type: 2}
+  bgs:
+  - {fileID: 2800000, guid: bf2e07f754788ae45af71725ed97910b, type: 3}
+  - {fileID: 2800000, guid: dbc305665fee42740b18af04aef663da, type: 3}
+  - {fileID: 2800000, guid: d7ae9cf5b7301274dbecad7ebfc37861, type: 3}
+  - {fileID: 2800000, guid: 8096c710e1927ac4e8334a0ce7481937, type: 3}
+  black: {fileID: 2800000, guid: 8ddcd14371740894eb119ccea22ed98f, type: 3}
   stages:
   - {fileID: 95289880745060128}
   - {fileID: 95239276715606716}
