@@ -22,6 +22,7 @@ public class blackWhite : MonoBehaviour {
     private int _moduleId = 0;
     private int stage = 1;
     private string blackCellsLog = "";
+    private List<int> addedblacks;
     private string[] stage2Names = { "Column_D", "D1", "D2", "D3", "D4", "C4", "B4", "A4", "Row_4" };
     private string[] stage3Names = { "Column_E", "E1", "E2", "E3", "E4", "E5", "D5", "C5", "B5", "A5", "Row_5" };
     private string[] stage4Names = { "Column_F", "F1", "F2", "F3", "F4", "F5", "F6", "E6", "D6", "C6", "B6", "A6", "Row_6" };
@@ -61,6 +62,7 @@ public class blackWhite : MonoBehaviour {
     {
         blacks = new List<int>();
         answers = new List<int>();
+        addedblacks = new List<int>();
         foreach (KMSelectable button in selButtons)
             button.GetComponent<Renderer>().material = white;
         generateStage(stage);
@@ -92,7 +94,7 @@ public class blackWhite : MonoBehaviour {
                     case 0:
                         #region TIMER
                         blacks.Add(8);
-                        Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 8 (C2)", _moduleId);
+                        Debug.LogFormat("[Black&White #{0}] <Stage {1}> Timer: Added 8 (C2)", _moduleId, stage);
                         #endregion
                         #region INDICATORS
                         if (KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.SND) || KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.IND))
@@ -100,12 +102,12 @@ public class blackWhite : MonoBehaviour {
                             if (KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.SND) || KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.IND))
                             {
                                 blacks.Add(0);
-                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 0 (A1)", _moduleId);
+                                addedblacks.Add(0);
                             }
                             else
                             {
                                 blacks.Add(1);
-                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 1 (A2)", _moduleId);
+                                addedblacks.Add(1);
                             }
                         }
                         if (KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.CLR) || KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.CAR))
@@ -113,14 +115,16 @@ public class blackWhite : MonoBehaviour {
                             if (KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.CLR) || KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.CAR))
                             {
                                 blacks.Add(13);
-                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 13 (B3)", _moduleId);
+                                addedblacks.Add(13);
                             }
                             else
                             {
                                 blacks.Add(14);
-                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 14 (C3)", _moduleId);
+                                addedblacks.Add(14);
                             }
                         }
+                        Debug.LogFormat("[Black&White #{0}] <Stage {1}> Indicators: Added {2}", _moduleId, stage, logAddedBlacks());
+                        addedblacks.Clear();
                         #endregion
                         #region SNL (SerialNumberLast)
                         int last = 0;
@@ -129,9 +133,8 @@ public class blackWhite : MonoBehaviour {
                         if (last % 2 == 0)
                         {
                             blacks.Add(2);
-                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 2 (C1)", _moduleId);
                             blacks.Add(7);
-                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 7 (B2)", _moduleId);
+                            Debug.LogFormat("[Black&White #{0}] <Stage {1}> SNL: Added 2 (C1) and 7 (B2)", _moduleId, stage);
                         }
                         #endregion
                         #region SNS (SerialNumberSum)
@@ -141,7 +144,7 @@ public class blackWhite : MonoBehaviour {
                         if (!isEven(sum))
                         {
                             blacks.Add(6);
-                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 6 (A2)", _moduleId);
+                            Debug.LogFormat("[Black&White #{0}] <Stage {1}> SNS: Added 6 (A2)", _moduleId, stage);
                         }
                         #endregion
                         #region PM (Ports+Modules)
@@ -149,14 +152,14 @@ public class blackWhite : MonoBehaviour {
                             if (!isEven(Info.GetSolvableModuleNames().Count + Info.GetSolvedModuleNames().Count))
                             {
                                 blacks.Add(12);
-                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 12 (A3)", _moduleId);
+                                Debug.LogFormat("[Black&White #{0}] <Stage {1}> PM: Added 12 (A3)", _moduleId, stage);
                             }
                         #endregion
                         break;
                     case 1:
                         #region TIMER
                         blacks.Add(12);
-                        Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 12 (A3)", _moduleId);
+                        Debug.LogFormat("[Black&White #{0}] <Stage {1}> Timer: Added 12 (A3)", _moduleId, stage);
                         #endregion
                         #region INDICATORS
                         if (KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.SND) || KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.IND))
@@ -164,14 +167,16 @@ public class blackWhite : MonoBehaviour {
                             if (KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.SND) || KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.IND))
                             {
                                 blacks.Add(0);
-                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 0 (A1)", _moduleId);
+                                addedblacks.Add(0);
                             }
                             else
                             {
                                 blacks.Add(1);
-                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 1 (A2)", _moduleId);
+                                addedblacks.Add(1);
                             }
                         }
+                        Debug.LogFormat("[Black&White #{0}] <Stage {1}> Indicators: Added {2}", _moduleId, stage, logAddedBlacks());
+                        addedblacks.Clear();
                         #endregion
                         #region SNL (SerialNumberLast)
                         last = 0;
@@ -180,7 +185,7 @@ public class blackWhite : MonoBehaviour {
                         if (last % 2 == 0)
                         {
                             blacks.Add(2);
-                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 2 (C1)", _moduleId);
+                            Debug.LogFormat("[Black&White #{0}] <Stage {1}> SNL: Added 2 (C1)", _moduleId, stage);
                         }
                         #endregion
                         #region SNS (SerialNumberSum)
@@ -190,7 +195,7 @@ public class blackWhite : MonoBehaviour {
                         if (!isEven(sum))
                         {
                             blacks.Add(6);
-                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 6 (A2)", _moduleId);
+                            Debug.LogFormat("[Black&White #{0}] <Stage {1}> SNS: Added 6 (A2)", _moduleId, stage);
                         }
                         #endregion
                         #region PM (Ports+Modules)
@@ -198,31 +203,35 @@ public class blackWhite : MonoBehaviour {
                             if (isEven(Info.GetSolvableModuleNames().Count + Info.GetSolvedModuleNames().Count))
                             {
                                 blacks.Add(8);
-                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 8 (C2)", _moduleId);
+                                addedblacks.Add(8);
                             }
                         if (Info.IsPortPresent(KMBombInfoExtensions.KnownPortType.DVI))
                             if (!isEven(Info.GetSolvableModuleNames().Count + Info.GetSolvedModuleNames().Count))
                             {
                                 blacks.Add(14);
-                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 14 (C3)", _moduleId);
+                                addedblacks.Add(14);
                             }
+                        Debug.LogFormat("[Black&White #{0}] <Stage {1}> PM: Added {2}", _moduleId, stage, logAddedBlacks());
+                        addedblacks.Clear();
                         #endregion
                         #region BATTERIES
                         if (Info.GetBatteryCount(KMBombInfoExtensions.KnownBatteryType.AA) > 0 && Info.GetBatteryCount(KMBombInfoExtensions.KnownBatteryType.D) == 0)
                         {
                             blacks.Add(7);
-                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 7 (B2)", _moduleId);
+                            addedblacks.Add(7);
                         }
                         else if (Info.GetBatteryCount(KMBombInfoExtensions.KnownBatteryType.AA) == 0 && Info.GetBatteryCount(KMBombInfoExtensions.KnownBatteryType.D) > 0)
                         {
                             blacks.Add(13);
-                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 13 (B3)", _moduleId);
+                            addedblacks.Add(13);
                         }
                         else if (Info.GetBatteryCount(KMBombInfoExtensions.KnownBatteryType.AA) > 0 && Info.GetBatteryCount(KMBombInfoExtensions.KnownBatteryType.D) > 0)
                         {
                             blacks.Add(13);
-                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 13 (B3)", _moduleId);
+                            addedblacks.Add(13);
                         }
+                        Debug.LogFormat("[Black&White #{0}] <Stage {1}> Batteries: Added {2}", _moduleId, stage, logAddedBlacks());
+                        addedblacks.Clear();
                         #endregion
                         break;
                     case 2:
@@ -232,12 +241,12 @@ public class blackWhite : MonoBehaviour {
                             if (KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.SND) || KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.IND))
                             {
                                 blacks.Add(7);
-                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 7 (B2)", _moduleId);
+                                addedblacks.Add(7);
                             }
                             else
                             {
-                                blacks.Add(1);
-                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 8 (C2)", _moduleId);
+                                blacks.Add(8);
+                                addedblacks.Add(8);
                             }
                         }
                         if (KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.MSA) || KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.MSA))
@@ -245,14 +254,16 @@ public class blackWhite : MonoBehaviour {
                             if (KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.TRN) || KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.TRN))
                             {
                                 blacks.Add(12);
-                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 12 (A3)", _moduleId);
+                                addedblacks.Add(12);
                             }
                             else
                             {
                                 blacks.Add(13);
-                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 13 (B3)", _moduleId);
+                                addedblacks.Add(13);
                             }
                         }
+                        Debug.LogFormat("[Black&White #{0}] <Stage {1}> Indicators: Added {2}", _moduleId, stage, logAddedBlacks());
+                        addedblacks.Clear();
                         #endregion
                         #region SNL (SerialNumberLast)
                         last = 0;
@@ -970,6 +981,173 @@ public class blackWhite : MonoBehaviour {
                 switch (Info.GetStrikes())
                 {
                     case 0:
+                        #region TIMER
+                        blacks.Add(4);
+                        blacks.Add(17);
+                        blacks.Add(18);
+                        blacks.Add(26);
+                        blacks.Add(35);
+                        Debug.LogFormat("[Black&White #{0}] <Stage {1}> Timer: Added 4 (E1), 17 (F3), 18 (A4), 26 (C5) and 35 (F6)", _moduleId, stage);
+                        #endregion
+                        #region INDICATORS
+                        if (KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.SND) || KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.IND))
+                        {
+                            if (KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.SND) || KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.IND))
+                            {
+                                blacks.Add(0);
+                                blacks.Add(2);
+                                addedblacks.Add(0);
+                                addedblacks.Add(2);
+                            }
+                            else
+                            {
+                                blacks.Add(1);
+                                blacks.Add(3);
+                                addedblacks.Add(1);
+                                addedblacks.Add(3);
+                            }
+                        }
+                        if (KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.MSA) || KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.TRN))
+                        {
+                            if (KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.MSA) || KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.TRN))
+                            {
+                                blacks.Add(7);
+                                addedblacks.Add(7);
+                            }
+                            else
+                            {
+                                blacks.Add(8);
+                                addedblacks.Add(8);
+                            }
+                        }
+                        if (KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.NSA) || KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.BOB))
+                        {
+                            if (KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.NSA) || KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.BOB))
+                            {
+                                blacks.Add(21);
+                                addedblacks.Add(21);
+                            }
+                            else
+                            {
+                                blacks.Add(22);
+                                addedblacks.Add(22);
+                            }
+                        }
+                        if (KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.FRQ) || KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.SIG))
+                        {
+                            if (KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.FRQ) || KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.SIG))
+                            {
+                                blacks.Add(27);
+                                addedblacks.Add(27);
+                            }
+                            else
+                            {
+                                blacks.Add(28);
+                                addedblacks.Add(28);
+                            }
+                        }
+                        if (KMBombInfoExtensions.IsIndicatorPresent(Info, KMBombInfoExtensions.KnownIndicatorLabel.FRK))
+                        {
+                            if (KMBombInfoExtensions.IsIndicatorOn(Info, KMBombInfoExtensions.KnownIndicatorLabel.FRK))
+                            {
+                                blacks.Add(32);
+                                addedblacks.Add(32);
+                            }
+                            else
+                            {
+                                blacks.Add(33);
+                                addedblacks.Add(33);
+                            }
+                        }
+                        Debug.LogFormat("[Black&White #{0}] <Stage {1}> Indicators: Added {2}", _moduleId, stage, logAddedBlacks());
+                        addedblacks.Clear();
+                        #endregion
+                        #region SNL (SerialNumberLast)
+                        int last = 0;
+                        foreach (int number in Info.GetSerialNumberNumbers())
+                            last = number;
+                        if (last % 2 == 0)
+                        {
+                            blacks.Add(9);
+                            blacks.Add(12);
+                            blacks.Add(15);
+                            blacks.Add(23);
+                            blacks.Add(34);
+                            Debug.LogFormat("[Black&White #{0}] <Stage {1}> SNL: Added 9 (D2), 12 (A3), 15 (D3), 23 (F4) and 34 (E5)", _moduleId, stage);
+                        }
+                        #endregion
+                        #region SNS (SerialNumberSum)
+                        int sum = 0;
+                        foreach (int num in Info.GetSerialNumberNumbers())
+                            sum += num;
+                        if (!isEven(sum))
+                        {
+                            blacks.Add(5);
+                            blacks.Add(6);
+                            blacks.Add(14);
+                            blacks.Add(29);
+                            Debug.LogFormat("[Black&White #{0}] <Stage {1}> SNS: Added 5 (F1), 6 (A2), 14 (C3) and 29 (F5)", _moduleId, stage);
+                        }
+                        #endregion
+                        #region PM (Ports+Modules)
+                        if (Info.IsPortPresent(KMBombInfoExtensions.KnownPortType.StereoRCA))
+                            if (isEven(Info.GetSolvableModuleNames().Count + Info.GetSolvedModuleNames().Count))
+                            {
+                                blacks.Add(11);
+                                addedblacks.Add(11);
+                            }
+                        if (Info.IsPortPresent(KMBombInfoExtensions.KnownPortType.DVI))
+                            if (!isEven(Info.GetSolvableModuleNames().Count + Info.GetSolvedModuleNames().Count))
+                            {
+                                blacks.Add(20);
+                                addedblacks.Add(20);
+                            }
+                        if (Info.IsPortPresent(KMBombInfoExtensions.KnownPortType.Parallel))
+                            if (isEven(Info.GetSolvedModuleNames().Count))
+                            {
+                                blacks.Add(24);
+                                addedblacks.Add(24);
+                            }
+                        if (Info.IsPortPresent(KMBombInfoExtensions.KnownPortType.RJ45))
+                            if (!isEven(Info.GetSolvedModuleNames().Count))
+                            {
+                                blacks.Add(30);
+                                addedblacks.Add(30);
+                            }
+                        Debug.LogFormat("[Black&White #{0}] <Stage {1}> PM: Added {2}", _moduleId, stage, logAddedBlacks());
+                        addedblacks.Clear();
+                        #endregion
+                        #region BATTERIES
+                        if (Info.GetBatteryCount(KMBombInfoExtensions.KnownBatteryType.AA) > 0 && Info.GetBatteryCount(KMBombInfoExtensions.KnownBatteryType.D) == 0)
+                        {
+                            blacks.Add(13);
+                            blacks.Add(16);
+                            blacks.Add(25);
+                            addedblacks.Add(13);
+                            addedblacks.Add(16);
+                            addedblacks.Add(25);
+                        }
+                        else if (Info.GetBatteryCount(KMBombInfoExtensions.KnownBatteryType.AA) == 0 && Info.GetBatteryCount(KMBombInfoExtensions.KnownBatteryType.D) > 0)
+                        {
+                            blacks.Add(10);
+                            blacks.Add(19);
+                            blacks.Add(31);
+                            addedblacks.Add(10);
+                            addedblacks.Add(19);
+                            addedblacks.Add(31);
+                        }
+                        else if (Info.GetBatteryCount(KMBombInfoExtensions.KnownBatteryType.AA) > 0 && Info.GetBatteryCount(KMBombInfoExtensions.KnownBatteryType.D) > 0)
+                        {
+                            blacks.Add(10);
+                            blacks.Add(19);
+                            blacks.Add(25);
+                            addedblacks.Add(10);
+                            addedblacks.Add(19);
+                            addedblacks.Add(25);
+                        }
+                        Debug.LogFormat("[Black&White #{0}] <Stage {1}> Batteries: Added {2}", _moduleId, stage, logAddedBlacks());
+                        addedblacks.Clear();
+                        #endregion
                         break;
                     case 1:
                         break;
@@ -978,6 +1156,16 @@ public class blackWhite : MonoBehaviour {
                 }
                 break;
         }
+    }
+
+    string logAddedBlacks ()
+    {
+        string toReturn = "";
+        foreach (int black in addedblacks)
+        {
+            toReturn = black.ToString() + "(" + buttonToCell(black) + "), ";
+        }
+        return toReturn.Substring(0, toReturn.Length - 2);
     }
 
     void ansChk(int pressedButton)
