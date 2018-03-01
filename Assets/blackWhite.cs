@@ -123,7 +123,8 @@ public class blackWhite : MonoBehaviour {
                                 addedblacks.Add(14);
                             }
                         }
-                        Debug.LogFormat("[Black&White #{0}] <Stage {1}> Indicators: Added {2}", _moduleId, stage, logAddedBlacks());
+                        if (addedblacks.Count > 0)
+                            Debug.LogFormat("[Black&White #{0}] <Stage {1}> Indicators: Added {2}", _moduleId, stage, logAddedBlacks());
                         addedblacks.Clear();
                         #endregion
                         #region SNL (SerialNumberLast)
@@ -175,7 +176,8 @@ public class blackWhite : MonoBehaviour {
                                 addedblacks.Add(1);
                             }
                         }
-                        Debug.LogFormat("[Black&White #{0}] <Stage {1}> Indicators: Added {2}", _moduleId, stage, logAddedBlacks());
+                        if (addedblacks.Count > 0)
+                            Debug.LogFormat("[Black&White #{0}] <Stage {1}> Indicators: Added {2}", _moduleId, stage, logAddedBlacks());
                         addedblacks.Clear();
                         #endregion
                         #region SNL (SerialNumberLast)
@@ -211,7 +213,8 @@ public class blackWhite : MonoBehaviour {
                                 blacks.Add(14);
                                 addedblacks.Add(14);
                             }
-                        Debug.LogFormat("[Black&White #{0}] <Stage {1}> PM: Added {2}", _moduleId, stage, logAddedBlacks());
+                        if (addedblacks.Count > 0)
+                            Debug.LogFormat("[Black&White #{0}] <Stage {1}> PM: Added {2}", _moduleId, stage, logAddedBlacks());
                         addedblacks.Clear();
                         #endregion
                         #region BATTERIES
@@ -230,7 +233,8 @@ public class blackWhite : MonoBehaviour {
                             blacks.Add(13);
                             addedblacks.Add(13);
                         }
-                        Debug.LogFormat("[Black&White #{0}] <Stage {1}> Batteries: Added {2}", _moduleId, stage, logAddedBlacks());
+                        if (addedblacks.Count > 0)
+                            Debug.LogFormat("[Black&White #{0}] <Stage {1}> Batteries: Added {2}", _moduleId, stage, logAddedBlacks());
                         addedblacks.Clear();
                         #endregion
                         break;
@@ -262,7 +266,8 @@ public class blackWhite : MonoBehaviour {
                                 addedblacks.Add(13);
                             }
                         }
-                        Debug.LogFormat("[Black&White #{0}] <Stage {1}> Indicators: Added {2}", _moduleId, stage, logAddedBlacks());
+                        if (addedblacks.Count > 0)
+                            Debug.LogFormat("[Black&White #{0}] <Stage {1}> Indicators: Added {2}", _moduleId, stage, logAddedBlacks());
                         addedblacks.Clear();
                         #endregion
                         #region SNL (SerialNumberLast)
@@ -272,7 +277,7 @@ public class blackWhite : MonoBehaviour {
                         if (last % 2 == 0)
                         {
                             blacks.Add(2);
-                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 2 (C1)", _moduleId);
+                            Debug.LogFormat("[Black&White #{0}] <Stage {1}> Added 2 (C1)", _moduleId, stage);
                         }
                         #endregion
                         #region SNS (SerialNumberSum)
@@ -282,7 +287,7 @@ public class blackWhite : MonoBehaviour {
                         if (!isEven(sum))
                         {
                             blacks.Add(1);
-                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 1 (B1)", _moduleId);
+                            Debug.LogFormat("[Black&White #{0}] <Stage {1}> Added 1 (B1)", _moduleId, stage);
                         }
                         #endregion
                         #region PM (Ports+Modules)
@@ -290,25 +295,28 @@ public class blackWhite : MonoBehaviour {
                             if (!isEven(Info.GetSolvableModuleNames().Count + Info.GetSolvedModuleNames().Count))
                             {
                                 blacks.Add(14);
-                                Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 14 (C3)", _moduleId);
+                                Debug.LogFormat("[Black&White #{0}] <Stage {1}> Added 14 (C3)", _moduleId, stage);
                             }
                         #endregion
                         #region BATTERIES
                         if (Info.GetBatteryCount(KMBombInfoExtensions.KnownBatteryType.AA) > 0 && Info.GetBatteryCount(KMBombInfoExtensions.KnownBatteryType.D) == 0)
                         {
                             blacks.Add(6);
-                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 6 (A2)", _moduleId);
+                            addedblacks.Add(6);
                         }
                         else if (Info.GetBatteryCount(KMBombInfoExtensions.KnownBatteryType.AA) == 0 && Info.GetBatteryCount(KMBombInfoExtensions.KnownBatteryType.D) > 0)
                         {
                             blacks.Add(0);
-                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 0 (A1)", _moduleId);
+                            addedblacks.Add(0);
                         }
                         else if (Info.GetBatteryCount(KMBombInfoExtensions.KnownBatteryType.AA) > 0 && Info.GetBatteryCount(KMBombInfoExtensions.KnownBatteryType.D) > 0)
                         {
                             blacks.Add(6);
-                            Debug.LogFormat("[Black&White #{0}] <Stage 1> Added 6 (A2)", _moduleId);
+                            addedblacks.Add(6);
                         }
+                        if (addedblacks.Count > 0)
+                            Debug.LogFormat("[Black&White #{0}] <Stage {1}> PM: Added {2}", _moduleId, stage, logAddedBlacks());
+                        addedblacks.Clear();
                         #endregion
                         break;
                 }
@@ -1059,7 +1067,8 @@ public class blackWhite : MonoBehaviour {
                                 addedblacks.Add(33);
                             }
                         }
-                        Debug.LogFormat("[Black&White #{0}] <Stage {1}> Indicators: Added {2}", _moduleId, stage, logAddedBlacks());
+                        if (addedblacks.Count > 0)
+                            Debug.LogFormat("[Black&White #{0}] <Stage {1}> Indicators: Added {2}", _moduleId, stage, logAddedBlacks());
                         addedblacks.Clear();
                         #endregion
                         #region SNL (SerialNumberLast)
@@ -1114,7 +1123,8 @@ public class blackWhite : MonoBehaviour {
                                 blacks.Add(30);
                                 addedblacks.Add(30);
                             }
-                        Debug.LogFormat("[Black&White #{0}] <Stage {1}> PM: Added {2}", _moduleId, stage, logAddedBlacks());
+                        if (addedblacks.Count > 0)
+                            Debug.LogFormat("[Black&White #{0}] <Stage {1}> PM: Added {2}", _moduleId, stage, logAddedBlacks());
                         addedblacks.Clear();
                         #endregion
                         #region BATTERIES
@@ -1145,7 +1155,8 @@ public class blackWhite : MonoBehaviour {
                             addedblacks.Add(19);
                             addedblacks.Add(25);
                         }
-                        Debug.LogFormat("[Black&White #{0}] <Stage {1}> Batteries: Added {2}", _moduleId, stage, logAddedBlacks());
+                        if (addedblacks.Count > 0)
+                            Debug.LogFormat("[Black&White #{0}] <Stage {1}> Batteries: Added {2}", _moduleId, stage, logAddedBlacks());
                         addedblacks.Clear();
                         #endregion
                         break;
@@ -1163,14 +1174,14 @@ public class blackWhite : MonoBehaviour {
         string toReturn = "";
         foreach (int black in addedblacks)
         {
-            toReturn = black.ToString() + "(" + buttonToCell(black) + "), ";
+            toReturn = black.ToString() + " (" + buttonToCell(black) + "), ";
         }
         return toReturn.Substring(0, toReturn.Length - 2);
     }
 
     void ansChk(int pressedButton)
     {
-        Debug.LogFormat("[Black&White #{0}] <Stage 1> Pressed button is {1} ({2})", _moduleId, pressedButton, buttonToCell(pressedButton));
+        Debug.LogFormat("[Black&White #{0}] <Stage {1}> Pressed button is {2} ({3})", _moduleId, stage, pressedButton, buttonToCell(pressedButton));
 
         if (blacks.Contains(pressedButton))
         {   
@@ -1594,10 +1605,11 @@ public class blackWhite : MonoBehaviour {
         puzzleBackground.GetComponent<Renderer>().material.mainTexture = bgs[0];
         switch (stage)
         {
-            case 2: stages[0].Play("stage2Err"); break;
-            case 3: stages[0].Play("stage2Err"); stages[1].Play("stage3Err"); break;
-            case 4: stages[0].Play("stage2Err"); stages[1].Play("stage3Err"); stages[2].Play("stage4Err");  break;
+            case 2: StartCoroutine("stage2Error"); break;
+            case 3: StartCoroutine("stage3Error"); break;
+            case 4: StartCoroutine("stage4Error"); break;
         }
+        stage = 1;
         Module.HandleStrike();
         Init();
     }
@@ -1658,6 +1670,41 @@ public class blackWhite : MonoBehaviour {
             Audio.PlaySoundAtTransform("pop", transform);
             yield return new WaitForSeconds(0.15f);
         }
+    }
+
+    IEnumerator stage2Error()
+    {
+        for (int i = 0; i < 1; i++)
+        {
+            stages[0].Play("stage2Err");
+            yield return new WaitForSeconds(1f);
+        }
+        s2GO.SetActive(false);
+    }
+    IEnumerator stage3Error()
+    {
+        for (int i = 0; i < 1; i++)
+        {
+            stages[0].Play("stage2Err");
+            stages[1].Play("stage3Err");
+            yield return new WaitForSeconds(1f);
+        }
+        s2GO.SetActive(false);
+        s3GO.SetActive(false);
+    }
+
+    IEnumerator stage4Error()
+    {
+        for (int i = 0; i < 1; i++)
+        {
+            stages[0].Play("stage2Err");
+            stages[1].Play("stage3Err");
+            stages[2].Play("stage4Err");
+            yield return new WaitForSeconds(1f);
+        }
+        s2GO.SetActive(false);
+        s3GO.SetActive(false);
+        s4GO.SetActive(false);
     }
 
     // Update is called once per frame
