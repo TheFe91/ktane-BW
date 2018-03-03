@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: ModConfig
   m_EditorClassIdentifier: 
   id: blackWhite
-  title: Black or White
+  title: Black & White
   description: 
   version: 1.0
   outputFolder: build
