@@ -22,8 +22,7 @@ public class blackWhite : MonoBehaviour {
 
     private bool _isSolved = false, _lightsOn = false;
     private static int _moduleIdCounter = 1;
-    private int _moduleId = 0;
-    private int stage = 1;
+    private int _moduleId = 0, stage = 1;
     private List<int> addedblacks;
     private string[] stage2Names = { "Column_D", "D1", "D2", "D3", "D4", "C4", "B4", "A4", "Row_4" };
     private string[] stage3Names = { "Column_E", "E1", "E2", "E3", "E4", "E5", "D5", "C5", "B5", "A5", "Row_5" };
@@ -251,17 +250,17 @@ public class blackWhite : MonoBehaviour {
                                 addedblacks.Add(8);
                             }
                         }
-                        if (KMBombInfoExtensions.IsIndicatorPresent(Info, labels.MSA) || KMBombInfoExtensions.IsIndicatorPresent(Info, labels.MSA))
+                        if (KMBombInfoExtensions.IsIndicatorPresent(Info, labels.MSA) || KMBombInfoExtensions.IsIndicatorPresent(Info, labels.TRN))
                         {
-                            if (KMBombInfoExtensions.IsIndicatorOn(Info, labels.TRN) || KMBombInfoExtensions.IsIndicatorOn(Info, labels.TRN))
+                            if (KMBombInfoExtensions.IsIndicatorOn(Info, labels.MSA) || KMBombInfoExtensions.IsIndicatorOn(Info, labels.TRN))
                             {
-                                blacks.Add(12);
-                                addedblacks.Add(12);
+                                blacks.Add(7);
+                                addedblacks.Add(7);
                             }
                             else
                             {
-                                blacks.Add(13);
-                                addedblacks.Add(13);
+                                blacks.Add(8);
+                                addedblacks.Add(8);
                             }
                         }
                         if (addedblacks.Count > 0)
