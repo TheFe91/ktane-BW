@@ -237,19 +237,6 @@ public class blackWhite : MonoBehaviour {
                         break;
                     case 2:
                         #region INDICATORS
-                        if (KMBombInfoExtensions.IsIndicatorPresent(Info, labels.SND) || KMBombInfoExtensions.IsIndicatorPresent(Info, labels.IND))
-                        {
-                            if (KMBombInfoExtensions.IsIndicatorOn(Info, labels.SND) || KMBombInfoExtensions.IsIndicatorOn(Info, labels.IND))
-                            {
-                                blacks.Add(7);
-                                addedblacks.Add(7);
-                            }
-                            else
-                            {
-                                blacks.Add(8);
-                                addedblacks.Add(8);
-                            }
-                        }
                         if (KMBombInfoExtensions.IsIndicatorPresent(Info, labels.MSA) || KMBombInfoExtensions.IsIndicatorPresent(Info, labels.TRN))
                         {
                             if (KMBombInfoExtensions.IsIndicatorOn(Info, labels.MSA) || KMBombInfoExtensions.IsIndicatorOn(Info, labels.TRN))
@@ -261,6 +248,19 @@ public class blackWhite : MonoBehaviour {
                             {
                                 blacks.Add(8);
                                 addedblacks.Add(8);
+                            }
+                        }
+                        if (KMBombInfoExtensions.IsIndicatorPresent(Info, labels.CLR) || KMBombInfoExtensions.IsIndicatorPresent(Info, labels.CAR))
+                        {
+                            if (KMBombInfoExtensions.IsIndicatorOn(Info, labels.CLR) || KMBombInfoExtensions.IsIndicatorOn(Info, labels.CAR))
+                            {
+                                blacks.Add(12);
+                                addedblacks.Add(12);
+                            }
+                            else
+                            {
+                                blacks.Add(13);
+                                addedblacks.Add(13);
                             }
                         }
                         if (addedblacks.Count > 0)
@@ -407,13 +407,22 @@ public class blackWhite : MonoBehaviour {
                         #endregion
                         #region PM(Ports+Modules)
                         if (Info.IsPortPresent(ports.StereoRCA))
-                            if ((Info.GetSolvableModuleNames().Count + Info.GetSolvedModuleNames().Count) % 2 == 0)
+                            if (isEven(Info.GetSolvableModuleNames().Count + Info.GetSolvedModuleNames().Count))
                             {
                                 blacks.Add(2);
+                                addedblacks.Add(2);
+                            }
+                        if (Info.IsPortPresent(ports.DVI))
+                            if (!isEven(Info.GetSolvableModuleNames().Count + Info.GetSolvedModuleNames().Count))
+                            {
                                 blacks.Add(12);
                                 blacks.Add(20);
-								Debug.LogFormat("[Black&White #{0}] <Stage {1}> PM: Added 2 (C1), 12 (A3) and 20 (C4)", _moduleId, stage);
+                                addedblacks.Add(12);
+                                addedblacks.Add(20);
                             }
+                        if (addedblacks.Count > 0)
+                            Debug.LogFormat("[Black & White #{0}] <Stage {1}> Indicators: Added {2}", _moduleId, stage, logAddedBlacks());
+                        addedblacks.Clear();
                         #endregion
                         break;
                     case 1:
